@@ -1,0 +1,105 @@
+/* 
+   *---------------------------------------*
+   | Project: TAS Projekt                  |
+   *---------------------------------------*
+   | Version: 0.1                          |
+   *---------------------------------------*
+   | Author: Mateusz Piotrowicz            |
+   *---------------------------------------*
+ */
+
+// SASS ELEMENTS
+
+// VARIABLES
+	// Colors:
+    $darkGrey: #b6b6b6;
+	// Fonts:
+
+// MIXINS
+
+@mixin transition($args) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// PARTIALS
+
+
+/* -------------------------------
+   GLOBAL 
+---------------------------------- */
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  
+}
+
+.left {float: left;}
+.right {float: right;}
+
+
+/* -------------------------------
+   HEADER 
+---------------------------------- */
+
+.navbar h1 {
+   text-align: center;
+   margin-bottom: 20px;
+}
+
+.tab-pane,
+.panel {
+  padding: 15px;
+}
+
+/* -------------------------------
+   NAVIGATION 
+---------------------------------- */
+
+/* -------------------------------
+   CONTENT 
+---------------------------------- */
+
+/* -------------------------------
+   SIDEBAR 
+---------------------------------- */
+
+/* -------------------------------
+   BOTTOM 
+---------------------------------- */
+
+/* -------------------------------
+   FOOTER 
+---------------------------------- */
+
+/* -------------------------------
+   RESPONSIVE 
+---------------------------------- */
+
+/* Bootstrap breakpoints */
+
+@media (max-width: 1200px) { }
+
+@media (max-width: 992px) { }
+
+@media (max-width: 768px) { }
