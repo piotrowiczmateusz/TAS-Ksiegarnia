@@ -6,16 +6,70 @@
 
     <div id="main">
     	<div class="container">
-    		<div class="row">
-    			<div class="col-md-12">
-    				<div class="panel panel-default">
-    					<div> Witaj, <strong>{{name}}</strong></div>	
-    					<a href="/sign-out" class="btn btn-default"><i class="fa fa-sign-out"></i> Wyloguj</a>	
-    				</div>				
-    			</div>
-    		</div>
+        <div class="row">
+          <div class="col-md-12">
+            <form class="" action="index.html" method="post">
+                <div class="form-group">
+                  <input type="text" name="search" class="form-control" value="" placeholder="Szukaj...">
+                </div>
+              <!-- <input type="submit" name="name" value=""> -->
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="panel panel-default">
+              <ul>
+                <li><a href="#">Kategoria 1</a></li>
+                <li><a href="#">Kategoria 2</a></li>
+                <li><a href="#">Kategoria 3</a></li>
+                <li><a href="#">Kategoria 4</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div> Witaj, <strong>{{name}}</strong></div>
+                  <a href="/sign-out" class="btn btn-default"><i class="fa fa-sign-out"></i> Wyloguj</a>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <h2>Bestsellery:</h2>
+                  <ul>
+                    {% for bestseller in bestsellers %}
+                      <li>
+                        {{ bestseller.title|e }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <h2>Nowosci:</h2>
+                  <ul>
+                    {% for novelty in novelties %}
+                      <li>
+                        {{ novelty.title|e }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
     	</div>
     </div>
-   
-{% endblock %}
 
+    {% include 'default/footer.html.twig' %}
+
+{% endblock %}

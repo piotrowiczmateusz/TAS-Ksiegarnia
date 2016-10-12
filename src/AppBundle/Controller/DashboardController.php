@@ -19,12 +19,27 @@ class DashboardController extends Controller
     {
         $session = $request->getSession();
 
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.isBestseller = 1");
+        $bestsellers = $query->getResult();
+
+        $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.isNew = 1");
+        $novelties = $query->getResult();
+
         if($request->getSession()->isStarted()) {
-            return $this->render('default/dashboard.html.twig', array('name' => $session->get('name')));
+            return $this->render('default/dashboard.html.twig', array(
+              'name' => $session->get('name'),
+              'bestsellers' => $bestsellers,
+              'novelties' => $novelties)
+            );
         }
         else {
             return $this->render('default/index.html.twig');
         }
+
+
+
 
     }
 }

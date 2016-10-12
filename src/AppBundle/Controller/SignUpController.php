@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Book;
 
 class SignUpController extends Controller
 {
@@ -21,12 +22,13 @@ class SignUpController extends Controller
 
         $message = "";
 
-        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('name' => $name));
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('email' => $email));
 
         if($user) {
             $message = "Użytkownik już istnieje.";
         }
         else {
+          
             $user = new User($name, $email, $password);
 
             $em = $this->getDoctrine()->getManager();

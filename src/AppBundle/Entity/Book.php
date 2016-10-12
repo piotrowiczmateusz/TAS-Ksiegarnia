@@ -43,15 +43,15 @@ class Book
      */
     private $publisher;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $cover;
+		/**
+		 * @ORM\Column(type="integer")
+		 */
+		private $date;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $date;
+    private $cover;
 
     /**
      * @ORM\Column(type="boolean")
@@ -62,6 +62,16 @@ class Book
      * @ORM\Column(type="boolean")
      */
     private $isBestseller;
+
+		/**
+     * @ORM\Column(type="string")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $rating;
 
     /**
      * Get id
@@ -220,7 +230,7 @@ class Book
     /**
      * Set date
      *
-     * @param string $date
+     * @param integer $date
      *
      * @return Book
      */
@@ -234,7 +244,7 @@ class Book
     /**
      * Get date
      *
-     * @return string
+     * @return integer
      */
     public function getDate()
     {
@@ -244,11 +254,11 @@ class Book
     /**
      * Set isNew
      *
-     * @param \bool $isNew
+     * @param \boolean $isNew
      *
      * @return Book
      */
-    public function setIsNew(\bool $isNew)
+    public function setIsNew($isNew)
     {
         $this->isNew = $isNew;
 
@@ -258,7 +268,7 @@ class Book
     /**
      * Get isNew
      *
-     * @return \bool
+     * @return \boolean
      */
     public function getIsNew()
     {
@@ -268,11 +278,11 @@ class Book
     /**
      * Set isBestseller
      *
-     * @param \bool $isBestseller
+     * @param \boolean $isBestseller
      *
      * @return Book
      */
-    public function setIsBestseller(\bool $isBestseller)
+    public function setIsBestseller( $isBestseller)
     {
         $this->isBestseller = $isBestseller;
 
@@ -282,16 +292,73 @@ class Book
     /**
      * Get isBestseller
      *
-     * @return \bool
+     * @return \boolean
      */
     public function getIsBestseller()
     {
         return $this->isBestseller;
     }
 
+		/**
+     * Set price
+     *
+     * @param  $price
+     *
+     * @return Book
+     */
+    public function setPrice( $price)
+    {
+        $this->price = $price;
 
-    public function __construct($title, $author) {
+        return $this;
+    }
+
+		/**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+		/**
+		 * Set rating
+		 *
+		 * @param  $rating
+		 *
+		 * @return Book
+		 */
+		public function setRating( $rating)
+		{
+				$this->rating = $rating;
+
+				return $this;
+		}
+
+		/**
+     * Get rating
+     *
+     * @return string
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+
+    public function __construct($title, $author,$description,$category,$publisher,$cover,$date,$isNew,$isBestseller,$price) {
        $this->setTitle($title);
        $this->setAuthor($author);
+			 $this->setDescription($description);
+			 $this->setCategory($category);
+			 $this->setPublisher($publisher);
+			 $this->setCover($cover);
+			 $this->setDate($date);
+			 $this->setIsNew($isNew);
+			 $this->setIsBestseller($isBestseller);
+			 $this->setPrice($price);
+			 $this->setRating("0");
    }
 }
