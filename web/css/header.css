@@ -1,0 +1,112 @@
+.header{
+  min-width: 600px !important;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  z-index: 997;
+  top: 0;
+  background-color: #1F1F1F;
+}
+
+.header span{
+  vertical-align: 3mm;
+}
+
+.login-tool{
+  height: 30px;
+  margin-top: 5px;
+  right: 100px;  
+  position: absolute;
+}
+
+.header a:hover{
+  text-decoration: none;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+
+.font-serif{
+  font-family: "roboto_slab",Verdana,sans-serif;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.color-action, .color-name{
+  color: #FFE8BD;
+}
+
+.color-action:hover, .color-name:hover{
+  color: #B29661;
+}
+
+.color-action:active, .color-name:active{
+  color: #B29661;
+}
+
+.font-size-4{
+  font-size: 16px;
+}
+
+.font-size-3{
+  font-size: 25px;
+}
+
+.single-space{  
+  margin-right: 10px;
+}
+
+.double-space{  
+  margin-right: 50px;
+}
+
+.logo-box{
+  padding-top: 20px;
+}
+
+.main-menu-container{
+  top: 55px;
+  z-index: 998;
+  position: relative;
+}
+
+.menu-container{
+  height: 31px;
+  display: block;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E3E3E3;
+  position: relative;
+}
+
+.menu-item{
+  display: block;
+  float: left;
+  font-size: 14px !important;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#menu-lvl1 > li > a{
+  text-align: center;
+  font-family: Lato;
+  font-size: normal;
+  font-weight: 400;
+  color: #303030;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+#menu-lvl1 > li > a:hover{
+  background-color: #303030;
+  color: #FFFFFF;
+}
+
+#menu-item-1{
+  margin-right: 120px;
+}

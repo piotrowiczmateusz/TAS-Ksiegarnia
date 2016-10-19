@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="registration">
+	<div class="container reg-form-position">
+		<div class="row">
+			<div class="col-md-6 col-centered">
+				<div class="login-box">
+					<h2>Logowanie</h2>
+					<form action="/">
+						<label id="login-icon" for="name"><i class="icon-user"></i></label>
+						<input type="text" name="name" id="name" placeholder="Username" required/>
+						<label id="login-icon" for="name"><i class="icon-shield"></i></label>
+						<input type="password" name="name" id="name" placeholder="Password" required/>
+						<a href="#" class="button">Zaloguj</a>
+					</form>
+					<div class="goto-registration">
+						<a href="/registration">Nie masz jeszcze konta? Zarejestruj się!</a>
+					</div>
+				</div>
+				<div class="remind-pass-box">
+					<h2>Odzyskiwanie hasła</h2>
+					<form action="/">
+						<label id="login-icon" for="name"><i class="icon-envelope "></i></label>
+						<input type="text" name="name" id="name" placeholder="Email" required/>
+						<a href="#" class="button">Odzyskaj hasło</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

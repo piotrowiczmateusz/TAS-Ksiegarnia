@@ -8,18 +8,18 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class LoginController extends Controller
+class RegistrationController extends Controller
 {
     /**
-     * @Route("/login")
+     * @Route("/registration")
      */
-    public function loginAction(Request $request)
+    public function registrationAction(Request $request)
     {
         if($session = $request->getSession()->get('name') !== null) {
             return $this->redirect("/dashboard");
         }
         else {
-            return $this->render('default/login.html.twig', [
+            return $this->render('default/registration.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
         }

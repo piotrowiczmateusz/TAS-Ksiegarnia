@@ -1,0 +1,51 @@
+/* FOOTER */
+footer{
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+  background-color: #1F1F1F;
+}
+
+footer nav{
+  float: right;
+}
+
+footer nav ul{
+  margin-top: 20px;
+  margin-right: 15px;
+}
+
+footer nav ul li{
+  margin-left: 20px;
+  display: inline-block;
+  list-style: none;
+}
+
+footer nav ul li a{
+  font-family: Lato;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #C3FDB8;
+}
+
+footer nav ul li a:hover{
+  color: #B29661;
+}
+
+footer nav ul li a:active{
+  color: #B29661;
+}
+
+.signature{
+  margin-left: 80px;
+  display: inline-block;
+  list-style: none;
+}
+
+.signature > h5{
+  font-family: Lato;
+  font-weight: 400;
+  font-size: 14px;
+  color: #FFFFFF;
+}
