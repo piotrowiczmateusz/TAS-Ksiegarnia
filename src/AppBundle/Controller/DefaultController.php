@@ -10,19 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        if($session = $request->getSession()->get('name') !== null) {
-            return $this->redirect("/dashboard");
-        }
-        else {
-            return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
-        }
-
+      return $this->redirect("/dashboard");
     }
 }

@@ -7,10 +7,11 @@
   padding: 0; }
 
 .left {
-  float: left; }
+  float: left;
+text-align: left;}
 
 .right {
-  float: right; }
+  float: right; text-align: right;}
 
 .navbar h1 {
   text-align: center;

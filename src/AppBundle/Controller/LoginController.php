@@ -10,19 +10,64 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
-    /**
-     * @Route("/login")
-     */
-    public function loginAction(Request $request)
-    {
-        if($session = $request->getSession()->get('name') !== null) {
-            return $this->redirect("/dashboard");
-        }
-        else {
-            return $this->render('default/login.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
-        }
 
-    }
+  /**
+   * @Route("/login-form")
+   */
+ public function loginFormAction(Request $request)
+ {
+   return $this->render('default/login.html.twig');
+}
+
+  /**
+   * @Route("/login")
+   */
+  public function loginAction(Request $request)
+  {
+
+      $name = $_POST['name'];
+      $password = $_POST['password'];
+
+      $message = "";
+
+      $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('name' => $name));
+
+      if($user) {
+          if($user->getPassword() == $password) {
+              $session = $request->getSession();
+              $session->start();
+              $session->set('name', $user->getName());
+
+              return $this->redirect('/dashboard');
+          }
+          else {
+              $message = "Niepoprawne hasło.";
+          }
+      }
+      else {
+          $message = "Użytkownik nie istnieje.";
+      }
+      return $this->render('default/alert.html.twig', array('msg' => $message));
+  }
+
+  /**
+   * @Route("/logout")
+   */
+  public function logoutAction(Request $request)
+  {
+      $session = $request->getSession();
+      $session->clear('name');
+      $session->remove('name');
+      unset($session);
+
+      $response = new Response();
+      $response->headers->clearCookie('cookname') ;
+      $response->send();
+
+      $response = $this->forward('AppBundle:Dashboard:index');
+
+      return $response;
+  }
+
+
 }

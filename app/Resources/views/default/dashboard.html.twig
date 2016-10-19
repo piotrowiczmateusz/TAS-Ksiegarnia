@@ -2,7 +2,7 @@
 
 {% block body %}
 
-{% include 'default/user-header.html.twig' %}
+{% include 'default/header.html.twig' %}
 
     <div id="main">
     	<div class="container">
@@ -20,22 +20,23 @@
           <div class="col-md-3">
             <div class="panel panel-default">
               <ul>
-                <li><a href="#">Kategoria 1</a></li>
-                <li><a href="#">Kategoria 2</a></li>
-                <li><a href="#">Kategoria 3</a></li>
-                <li><a href="#">Kategoria 4</a></li>
+                {% for category in categories %}
+                <li><a href="/categories/{{category.id}}">{{category.title|e}}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
           <div class="col-md-9">
+            {% if name is defined and name is not empty %}
             <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default">
                   <div> Witaj, <strong>{{name}}</strong></div>
-                  <a href="/sign-out" class="btn btn-default"><i class="fa fa-sign-out"></i> Wyloguj</a>
+                  <a href="/logout" class="btn btn-default"><i class="fa fa-sign-out"></i> Wyloguj</a>
                 </div>
               </div>
             </div>
+            {% endif %}
             <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default">
@@ -43,7 +44,9 @@
                   <ul>
                     {% for bestseller in bestsellers %}
                       <li>
-                        {{ bestseller.title|e }}
+                        <a href="books/{{bestseller.id}}">
+                          {{ bestseller.title|e }}
+                        </a>
                       </li>
                     {% endfor %}
                   </ul>
@@ -57,7 +60,9 @@
                   <ul>
                     {% for novelty in novelties %}
                       <li>
-                        {{ novelty.title|e }}
+                        <a href="books/{{novelty.id}}">
+                          {{ novelty.title|e }}
+                        </a>
                       </li>
                     {% endfor %}
                   </ul>
@@ -66,7 +71,6 @@
             </div>
           </div>
         </div>
-
     	</div>
     </div>
 

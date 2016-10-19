@@ -23,9 +23,9 @@
                 <div class="form-group">
 							    <label for="category">Kategoria:</label>
                   <select class="form-control" name="category" id="category">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {% for category in categories %}
+                    <option>{{category.title|e}}</option>
+                    {% endfor %}
                   </select>
 							  </div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
 							    <label for="bestseller">Bestseller: <input type="checkbox" name="bestseller" id="bestseller"></label>
 							  </div>
                 <div class="form-group">
-                  <label for="new">Nowosc: <input type="checkbox" name="new" id="new"></label>      
+                  <label for="new">Nowosc: <input type="checkbox" name="new" id="new"></label>
                 </div>
                 <div class="form-group">
 							    <label for="description">Description:</label>

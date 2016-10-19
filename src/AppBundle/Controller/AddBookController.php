@@ -11,9 +11,9 @@ use AppBundle\Entity\Book;
 class AddBookController extends Controller
 {
     /**
-     * @Route("/add")
+     * @Route("/add-book")
      */
-    public function indexAction()
+    public function addBookAction()
     {
           $title = $_POST['title'];
           $author = $_POST['author'];
@@ -33,15 +33,21 @@ class AddBookController extends Controller
 
           $message = "Dodano ksiązkę: " . $book->getTitle();
 
-          return $this->render('default/register.html.twig', array('msg' => $message));
+          return $this->render('default/alert.html.twig', array('msg' => $message));
         }
 
     /**
-     * @Route("/add-book")
+     * @Route("/add-book-form")
      */
-    public function addBookAction()
+    public function addBookFormAction()
     {
-        return $this->render('default/add-book.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery("SELECT c FROM AppBundle:Category c");
+        $categories = $query->getResult();
+
+        return $this->render('default/add-book.html.twig', array(
+          'categories' => $categories
+        ));
     }
 
 }
