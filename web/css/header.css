@@ -1,6 +1,6 @@
-.header{
+header{
   min-width: 600px !important;
-  height: 100px;
+  height: 60px;
   width: 100%;
   position: fixed;
   z-index: 997;
@@ -8,18 +8,11 @@
   background-color: #1F1F1F;
 }
 
-.header span{
+header span{
   vertical-align: 3mm;
 }
 
-.login-tool{
-  height: 30px;
-  margin-top: 5px;
-  right: 100px;  
-  position: absolute;
-}
-
-.header a:hover{
+header a:hover{
   text-decoration: none;
 }
 
@@ -35,15 +28,15 @@
   cursor: pointer;
 }
 
-.color-action, .color-name{
+.color-action{
   color: #FFE8BD;
 }
 
-.color-action:hover, .color-name:hover{
+.color-action:hover{
   color: #B29661;
 }
 
-.color-action:active, .color-name:active{
+.color-action:active{
   color: #B29661;
 }
 
@@ -55,58 +48,69 @@
   font-size: 25px;
 }
 
+.small-space{
+  margin-left: 3px;
+}
+
 .single-space{  
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .double-space{  
-  margin-right: 50px;
+  margin-left: 20px;
 }
 
-.logo-box{
-  padding-top: 20px;
+header nav{
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  position: absolute;
 }
 
-.main-menu-container{
-  top: 55px;
-  z-index: 998;
+header a:hover{
+  text-decoration: none;
+}
+
+header nav ul{
+  text-align: right;
+}
+
+header nav ul li{
+  display: inline-block;
+}
+
+.dropdown{
   position: relative;
+  display: inline-block;
 }
 
-.menu-container{
-  height: 31px;
+.dropdown-content{
+  display: none;
+  position: absolute;
+  background-color: #151515;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);  
+  border: 1px solid black;
+}
+
+.dropdown-content a{
+  line-height: 40px;
+  text-align: left;
+  color: #FFE8BD;
+  padding-left: 15px;
+  text-decoration: none;
   display: block;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #E3E3E3;
-  position: relative;
 }
 
-.menu-item{
-  display: block;
-  float: left;
-  font-size: 14px !important;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+.dropdown-content a:hover{
+  background-color: #585858;
+  color: #B29661;
 }
 
-#menu-lvl1 > li > a{
-  text-align: center;
-  font-family: Lato;
-  font-size: normal;
-  font-weight: 400;
-  color: #303030;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  position: relative;
+.dropdown:hover .dropdown-content{
+  display: block;  
 }
 
-#menu-lvl1 > li > a:hover{
-  background-color: #303030;
-  color: #FFFFFF;
-}
-
-#menu-item-1{
-  margin-right: 120px;
+.dropdown:hover #my-account{
+  color: #B29661;
 }
