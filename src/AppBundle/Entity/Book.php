@@ -347,7 +347,6 @@ class Book
         return $this->rating;
     }
 
-
     public function __construct($title, $author,$description,$category,$publisher,$cover,$date,$isNew,$isBestseller,$price) {
        $this->setTitle($title);
        $this->setAuthor($author);
@@ -361,4 +360,5 @@ class Book
 			 $this->setPrice($price);
 			 $this->setRating("0");
    }
+
 }

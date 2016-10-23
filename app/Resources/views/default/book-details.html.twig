@@ -7,15 +7,25 @@
     <div id="main">
     	<div class="container">
     		<div class="row">
-    			<div class="col-md-6">
+          {% include 'default/sidebar.html.twig' %}
+    			<div class="col-md-9">
     				<div class="panel panel-default">
 						  <ul>
                 {% for b in books %}
-						    <li>Tytuł: {{b.title}}</li>
-                <li>Autor: {{b.author}}</li>
-                <li>Opis: {{b.description}}</li>
-                <li>Kategoria: {{b.category}}</li>
-                <li>Wydawnictwo: {{b.publisher}}</li>
+  						    <li>Tytuł: {{b.title}}</li>
+                  <li>Autor: {{b.author}}</li>
+                  <li>Opis: {{b.description}}</li>
+                  <li>Kategoria: {{b.category}}</li>
+                  <li>Wydawnictwo: {{b.publisher}}</li>
+                  <li>Rok wydania: {{b.date}}</li>
+                  <li>Cena: {{b.price}}</li>
+                  {% if b.isBestseller == true %}
+                    <li><strong>Bestseller</strong></li>
+                  {% endif %}
+                  {% if b.isNew == true %}
+                    <li><strong>Nowosc</strong></li>
+                  {% endif %}
+                  <a href="/add-to-cart?id={{b.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
                 {% endfor %}
 						  </ul>
     				</div>

@@ -7,35 +7,40 @@
 				<a href="/" class="text-bold font-serif font-size-3 color-action single-space">Księgarnia</a>
 			</div>
 			<div class="col-md-8 right">
-				<nav  id="header-nav">					
+				<nav  id="header-nav">
 					<ul>
 
 					{% if name is defined and name is not empty %}
 					<li class="dropdown">
 						<i class="fa fa-user"></i>
-						<a id="my-account" href="#" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Moje konto</a>	
+						<a id="my-account" href="#" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Moje konto</a>
 						<div class="dropdown-content">
-							<a href="#">Dodaj książkę</a>
-							<a href="#">Moje dane</a>
-							<a href="#">Ustawienia</a>
-							<a href="#">Wyloguj</a>
-						</div>					
+							<a href="/add-book-form">Dodaj książkę</a>
+							<a href="/my-account">Moje dane</a>
+							<a href="/settings">Ustawienia</a>
+							<a href="/logout">Wyloguj</a>
+						</div>
 					</li>
 
 					<li>
 						<i class="fa fa-shopping-cart double-space"></i>
-						<a href="#" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Koszyk</a>						
+						<a href="/cart" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Koszyk</a>
 					</li>
-					
+
 					{% else %}
-					
+
 						<li>
-							<a href="/registration-form" class="text-bold font-serif cursor-pointer color-action font-size-4">rejestracja</a>
+							<i class="fa fa-plus-circle"></i>
+							<a href="/registration-form" class="text-bold font-serif cursor-pointer color-action font-size-4">
+								rejestracja
+							</a>
 						</li>
 						<li>
-							<a href="/login-form" class="text-bold font-serif cursor-pointer color-action font-size-4 double-space">logowanie</a>
+							<i class="fa fa-sign-in double-space"></i>
+							<a href="/login-form" class="text-bold font-serif cursor-pointer color-action font-size-4">logowanie
+							</a>
 						</li>
-					
+
 					{% endif %}
 
 					</ul>

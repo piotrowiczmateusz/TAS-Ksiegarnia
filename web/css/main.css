@@ -22,6 +22,14 @@ text-align: left;}
   padding: 15px;
 }
 
+ul {
+  padding-left: 20px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
 /* -------------------------------
    NAVIGATION
 ---------------------------------- */

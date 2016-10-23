@@ -36,6 +36,7 @@ class LoginController extends Controller
           if($user->getPassword() == $password) {
               $session = $request->getSession();
               $session->start();
+              $session->set('id', $user->getId());
               $session->set('name', $user->getName());
 
               return $this->redirect('/dashboard');

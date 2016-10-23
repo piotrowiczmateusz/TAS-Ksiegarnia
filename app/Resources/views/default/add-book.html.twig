@@ -11,7 +11,7 @@
     				<div class="panel panel-default">
 						  <div id="sign-up" class="tab-pane fade in active">
 						    <h3>Dodaj ksiazke</h3>
-						    <form action="/add" method="POST">
+						    <form action="/add-book" method="POST" enctype="multipart/form-data">
 						      <div class="form-group">
 							    <label for="title">Tytul:</label>
 							    <input type="text" name="title" class="form-control" id="title">
@@ -56,6 +56,10 @@
                 <div class="form-group">
 							    <label for="price">Cena:</label>
                   <input type="number" name="price" class="form-control" id="price">
+							  </div>
+                <div class="form-group">
+							    <label for="cover">Okładka:</label>
+                  <input type="file" name="cover" class="form-control" id="cover">
 							  </div>
 							  <button type="submit" class="btn btn-default"><i class="fa fa-plus-circle"></i> Dodaj</button>
 							</form>
