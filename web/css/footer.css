@@ -3,7 +3,7 @@ footer{
   width: 100%;
   height: 80px;
   bottom: 0;
-  background-color: #1F1F1F;
+  background-color: #080808;
 }
 
 footer nav{
@@ -26,7 +26,7 @@ footer nav ul li a{
   font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;
-  color: #C3FDB8;
+  color: #FFE8BD;
 }
 
 footer nav ul li a:hover{
