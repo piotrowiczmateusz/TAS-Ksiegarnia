@@ -1,18 +1,24 @@
 {% block body %}
 
-              <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default book-preview">
-                  <ul>
-                    <li><img src="../images/logo.png" alt="" /></li>
-                    <li>Tytuł: {{book.title}}</li>
-                    <li>Autor: {{book.author}}</li>
-                    <li>Cena: {{book.price}}</li>
-                  </ul>
-                  <a href="/add-to-cart?id={{book.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a><br>
-                  <a href="/books/{{book.id}}"><i class="fa fa-info-circle"></i> Szczegoly</a>
-                </div>
-
-              </div>
-
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default">
+      <div class="book-cover-box">
+        <img src="../images/book-cover/w_pustyni_i_w_puszczy.jpg" class="img-responsive" alt="" />
+      </div>
+      <div class="book-info-box">
+        <ul class="small-space">
+          <li class="text-bold font-serif font-size-5">{{book.title}}</li>
+          <li class="font-serif font-size-5">{{book.author}}</li>
+          <li class="font-serif font-size-6">{{book.category}}</li>
+        </ul>
+      </div>
+      <div class="book-submit-box">
+        <div class="text-right pad-right"> 
+          <a class="font-size-5" href="/books/{{book.id}}"><i class="fa fa-info-circle small-space2"></i>Szczegóły</a>
+        </div>
+        <button id="add-book-button" type="submit" class="button"><i class="fa fa-shopping-cart small-space2"></i>Cena: {{book.price}}</button> 
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
