@@ -22,12 +22,13 @@ class MyAccountController extends Controller
       $query = $em->createQuery("SELECT b FROM AppBundle:User b WHERE b.id = ".$id);
       $user = $query->getResult();
 
-      // $query = $em->createQuery("SELECT b FROM AppBundle:Order b");
-      // $orders = $query->getResult();
+      $query = $em->createQuery("SELECT o FROM AppBundle:BookOrder o WHERE o.userId = ".$id);
+      $orders = $query->getResult();
 
       return $this->render('default/my-account.html.twig', array(
         'name' => $session->get('name'),
-        'user' => $user)
+        'user' => $user,
+        'orders' => $orders)
       );
 
     }

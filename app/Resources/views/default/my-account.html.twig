@@ -20,9 +20,11 @@
     			</div>
           <div class="col-md-6">
     				<div class="panel panel-default">
-						  <h2>Zakupione ksiązki:</h2>
+						  <h2>Moje zamowienia:</h2>
               <ul>
-
+                {% for o in orders %}
+						    <li>Id zamowienia: {{o.id}}</li>
+                {% endfor %}
               </ul>
     				</div>
     			</div>

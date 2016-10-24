@@ -32,15 +32,6 @@ class CartController extends Controller
     {
       $session = $request->getSession();
 
-      if($session->get('name') == null) {
-
-        $message = "Musisz się zalogować, aby dodawać przedmioty do koszyka.";
-
-        return $this->render('default/alert.html.twig', array(
-          'msg' => $message)
-        );
-
-      } else {
         $id = $_GET['id'];
 
         $em = $this->getDoctrine()->getManager();
@@ -56,7 +47,6 @@ class CartController extends Controller
         $session->set('cart', $cart);
 
         return $this->redirect('/cart');
-      }
 
     }
 
@@ -66,7 +56,10 @@ class CartController extends Controller
     public function removeFromCart(Request $request)
     {
       $session = $request->getSession();
-      $id = $session->get('id');
+      $id = $_GET['id'];
+
+      $cart = $session->get('cart');
+      
 
       // ...
 
