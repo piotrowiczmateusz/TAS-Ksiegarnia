@@ -21,7 +21,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default">
-                  <div> Witaj, <strong>{{name}}</strong></div>
+                  <hr class="style14">
+                  <div class="headline-font text-center"> Witaj, <strong>{{name}}</strong></div>
+                  <hr class="style14">
                   <!-- <a href="/logout" class="btn btn-default"><i class="fa fa-sign-out"></i> Wyloguj</a> -->
                 </div>
               </div>
@@ -30,7 +32,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default">
-                  <h2>Bestsellery:</h2>
+                  <hr class="style14">
+                  <h2 class="headline-font text-center">Bestsellery</h2>
+                  <hr class="style14">
                   <div class="row">
                     {% for book in bestsellers %}
                       {% include 'default/book-preview.html.twig' %}
@@ -42,7 +46,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="panel panel-default">
-                  <h2>Nowosci:</h2>
+                  <hr class="style14">
+                  <h2 class="headline-font text-center">Nowosci</h2>
+                  <hr class="style14">
                   <div class="row">
                     {% for book in novelties %}
                       {% include 'default/book-preview.html.twig' %}
