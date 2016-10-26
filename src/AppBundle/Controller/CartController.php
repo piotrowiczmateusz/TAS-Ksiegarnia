@@ -36,7 +36,7 @@ class CartController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.id = ".$id);
+        $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.id = '".$id."'");
         $book = $query->getResult();
 
         ($session->get('cart') != null) ? $cart = $session->get('cart') : $cart = array();
@@ -59,7 +59,7 @@ class CartController extends Controller
       $id = $_GET['id'];
 
       $cart = $session->get('cart');
-      
+
 
       // ...
 

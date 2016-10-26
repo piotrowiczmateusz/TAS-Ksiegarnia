@@ -12,8 +12,12 @@
               <h2>Moje dane:</h2>
 						  <ul>
                 {% for u in user %}
-						    <li>Login: {{u.name}}</li>
+						    <li>Imie: {{u.name}}</li>
+                <li>Nazwisko: {{u.surname}}</li>
                 <li>E-mail: {{u.email}}</li>
+                <li>Ulica i nr mieszkania: {{u.address}}</li>
+                <li>Miasto: {{u.city}}</li>
+                <li>Kod pocztowy: {{u.postalCode}}</li>
                 {% endfor %}
 						  </ul>
     				</div>

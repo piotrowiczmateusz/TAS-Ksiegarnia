@@ -13,10 +13,10 @@
         </ul>
       </div>
       <div class="book-submit-box">
-        <div class="text-right pad-right"> 
+        <div class="text-right pad-right">
           <a class="font-size-5" href="/books/{{book.id}}"><i class="fa fa-info-circle small-space2"></i>Szczegóły</a>
         </div>
-        <button id="add-book-button" type="submit" class="button"><i class="fa fa-shopping-cart small-space2"></i>Cena: {{book.price}}</button> 
+        <a href="/add-to-cart?id={{book.id}}" id="add-book-button" type="submit" class="button"><i class="fa fa-shopping-cart small-space2"></i>Cena: {{book.price}}</a> 
       </div>
     </div>
   </div>

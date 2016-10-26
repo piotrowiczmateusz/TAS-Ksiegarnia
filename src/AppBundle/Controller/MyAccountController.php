@@ -19,10 +19,10 @@ class MyAccountController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $query = $em->createQuery("SELECT b FROM AppBundle:User b WHERE b.id = ".$id);
+      $query = $em->createQuery("SELECT b FROM AppBundle:User b WHERE b.id = '".$id."'");
       $user = $query->getResult();
 
-      $query = $em->createQuery("SELECT o FROM AppBundle:BookOrder o WHERE o.userId = ".$id);
+      $query = $em->createQuery("SELECT o FROM AppBundle:BookOrder o WHERE o.userId = '".$id."'");
       $orders = $query->getResult();
 
       return $this->render('default/my-account.html.twig', array(

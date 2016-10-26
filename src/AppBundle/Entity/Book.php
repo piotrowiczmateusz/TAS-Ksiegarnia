@@ -11,11 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Book
 {
-	/**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+		/**
+		 * @ORM\Column(type="guid")
+		 * @ORM\Id
+		 * @ORM\GeneratedValue(strategy="UUID")
+		 */
     private $id;
 
     /**
@@ -64,19 +64,47 @@ class Book
     private $isBestseller;
 
 		/**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="boolean")
+     */
+    private $isDiscount;
+
+		/**
+     * @ORM\Column(type="integer")
      */
     private $price;
+
+		/**
+     * @ORM\Column(type="integer")
+     */
+    private $discountPrice;
 
     /**
      * @ORM\Column(type="string")
      */
     private $rating;
 
+
+    public function __construct($title, $author,$description,$category,$publisher,$cover,$date,$isNew,$isBestseller, $isDiscount, $price, $discountPrice) {
+       $this->setTitle($title);
+       $this->setAuthor($author);
+			 $this->setDescription($description);
+			 $this->setCategory($category);
+			 $this->setPublisher($publisher);
+			 $this->setCover($cover);
+			 $this->setDate($date);
+			 $this->setIsNew($isNew);
+			 $this->setIsBestseller($isBestseller);
+			 $this->setIsDiscount($isDiscount);
+			 $this->setPrice($price);
+			 $this->setDiscountPrice($discountPrice);
+			 $this->setRating("0");
+   }
+
+
     /**
      * Get id
      *
-     * @return integer
+     * @return guid
      */
     public function getId()
     {
@@ -204,30 +232,6 @@ class Book
     }
 
     /**
-     * Set cover
-     *
-     * @param string $cover
-     *
-     * @return Book
-     */
-    public function setCover($cover)
-    {
-        $this->cover = $cover;
-
-        return $this;
-    }
-
-    /**
-     * Get cover
-     *
-     * @return string
-     */
-    public function getCover()
-    {
-        return $this->cover;
-    }
-
-    /**
      * Set date
      *
      * @param integer $date
@@ -252,9 +256,33 @@ class Book
     }
 
     /**
+     * Set cover
+     *
+     * @param string $cover
+     *
+     * @return Book
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    /**
      * Set isNew
      *
-     * @param \boolean $isNew
+     * @param boolean $isNew
      *
      * @return Book
      */
@@ -268,7 +296,7 @@ class Book
     /**
      * Get isNew
      *
-     * @return \boolean
+     * @return boolean
      */
     public function getIsNew()
     {
@@ -278,11 +306,11 @@ class Book
     /**
      * Set isBestseller
      *
-     * @param \boolean $isBestseller
+     * @param boolean $isBestseller
      *
      * @return Book
      */
-    public function setIsBestseller( $isBestseller)
+    public function setIsBestseller($isBestseller)
     {
         $this->isBestseller = $isBestseller;
 
@@ -292,52 +320,100 @@ class Book
     /**
      * Get isBestseller
      *
-     * @return \boolean
+     * @return boolean
      */
     public function getIsBestseller()
     {
         return $this->isBestseller;
     }
 
-		/**
-     * Set price
+    /**
+     * Set isDiscount
      *
-     * @param  $price
+     * @param boolean $isDiscount
      *
      * @return Book
      */
-    public function setPrice( $price)
+    public function setIsDiscount($isDiscount)
+    {
+        $this->isDiscount = $isDiscount;
+
+        return $this;
+    }
+
+    /**
+     * Get isDiscount
+     *
+     * @return boolean
+     */
+    public function getIsDiscount()
+    {
+        return $this->isDiscount;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Book
+     */
+    public function setPrice($price)
     {
         $this->price = $price;
 
         return $this;
     }
 
-		/**
+    /**
      * Get price
      *
-     * @return string
+     * @return integer
      */
     public function getPrice()
     {
         return $this->price;
     }
 
-		/**
-		 * Set rating
-		 *
-		 * @param  $rating
-		 *
-		 * @return Book
-		 */
-		public function setRating( $rating)
-		{
-				$this->rating = $rating;
+    /**
+     * Set discountPrice
+     *
+     * @param integer $discountPrice
+     *
+     * @return Book
+     */
+    public function setDiscountPrice($discountPrice)
+    {
+        $this->discountPrice = $discountPrice;
 
-				return $this;
-		}
+        return $this;
+    }
 
-		/**
+    /**
+     * Get discountPrice
+     *
+     * @return integer
+     */
+    public function getDiscountPrice()
+    {
+        return $this->discountPrice;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param string $rating
+     *
+     * @return Book
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
      * Get rating
      *
      * @return string
@@ -346,19 +422,4 @@ class Book
     {
         return $this->rating;
     }
-
-    public function __construct($title, $author,$description,$category,$publisher,$cover,$date,$isNew,$isBestseller,$price) {
-       $this->setTitle($title);
-       $this->setAuthor($author);
-			 $this->setDescription($description);
-			 $this->setCategory($category);
-			 $this->setPublisher($publisher);
-			 $this->setCover($cover);
-			 $this->setDate($date);
-			 $this->setIsNew($isNew);
-			 $this->setIsBestseller($isBestseller);
-			 $this->setPrice($price);
-			 $this->setRating("0");
-   }
-
 }

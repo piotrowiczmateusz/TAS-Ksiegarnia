@@ -25,12 +25,12 @@ class LoginController extends Controller
   public function loginAction(Request $request)
   {
 
-      $name = $_POST['name'];
+      $email = $_POST['email'];
       $password = $_POST['password'];
 
       $message = "";
 
-      $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('name' => $name));
+      $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('email' => $email));
 
       if($user) {
           if($user->getPassword() == $password) {

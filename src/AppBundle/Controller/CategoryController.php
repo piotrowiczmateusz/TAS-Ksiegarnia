@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $query = $em->createQuery("SELECT c FROM AppBundle:Category c WHERE c.id = ".$id);
+      $query = $em->createQuery("SELECT c FROM AppBundle:Category c WHERE c.id = '".$id."'");
       $categories = $query->getResult();
       $category = array_pop($categories);
 
