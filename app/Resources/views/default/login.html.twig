@@ -2,14 +2,14 @@
 {% block body %}
 
 {% include 'default/header.html.twig' %}
-<div id="registration">
-	<div class="container reg-form-position">
+<div id="login-form">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-centered">
 				<div class="login-box">
 					<h2>Logowanie</h2>
 					<form action="/login" method="POST">
-						<label id="login-icon" for="email"><i class="icon-user"></i></label>
+						<label id="login-icon" for="email"><i class="icon-envelope"></i></label>
 						<input type="email" name="email" id="email" placeholder="E-mail" required/>
 						<label id="login-icon" for="password"><i class="icon-shield"></i></label>
 						<input type="password" name="password" id="password" placeholder="Password" required/>

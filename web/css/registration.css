@@ -1,8 +1,4 @@
-button {
-	border: none;
-}
-
-#registration{
+#registration-form, #login-form{
 	width: 100%;
 	height: 100vh;
 	background-image: url(../images/bg.jpg);
@@ -18,7 +14,7 @@ button {
 
 .registration-box{
 	width: 343px;
-	height: 425px;
+	height: 530px;
 	margin: 20px auto 20px auto;
 	background-color: #EBEBEB;
 	border-radius: 8px/7px;
@@ -90,14 +86,34 @@ body, input{
 	color: #4C4C4C;
 }
 
-#registration form{
+#login-form form, #registration-form form{
 	margin: 0 30px;
 }
 
-input[type=text], input[type=password], input[type=email]{
+#login-form input[type=text], 
+#login-form input[type=password], 
+#login-form input[type=email]{
 	width: 200px;
 	height: 39px;
 	margin-top: 13px;
+	margin-left: -5px;
+	padding-left: 10px;
+	background-color: #FFFFFF;
+	border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+	border: solid 1px #CBC9C9;
+	-webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+	-moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
+	-webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+	-moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+	box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+}
+
+#registration-form input[type=text], 
+#registration-form input[type=password], 
+#registration-form input[type=email]{
+	width: 200px;
+	height: 39px;
+	margin-top: 5px;
 	margin-left: -5px;
 	padding-left: 10px;
 	background-color: #FFFFFF;
@@ -126,10 +142,10 @@ input[type=text], input[type=password], input[type=email]{
 	box-shadow: 1px 2px 5px rgba(0,0,0,.09);
 }
 
-#registration .button{
+#login-form .button, #registration-form .button{
 	width: 150px;
 	height: 27px;
-	margin: 20px 8px 20px 0px;
+	margin: 20px 8px 5px 0px;
 	padding: 6px 25px 0px 20px;
 	top: 0px;
 	position: relative;
@@ -150,7 +166,7 @@ input[type=text], input[type=password], input[type=email]{
 	transition: all 0.1s linear 0s;
 }
 
-#registration .button:hover{
+#login-form .button:hover, #registration-form .button:hover{
 	top: 3px;
 	background-color: #2E458B;
 	-webkit-box-shadow: none;
@@ -183,4 +199,12 @@ input[type=text], input[type=password], input[type=email]{
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #493D26;
+}
+
+button {
+	border: none;
+}
+
+#registration-form h2{
+	margin-top: 0px;
 }

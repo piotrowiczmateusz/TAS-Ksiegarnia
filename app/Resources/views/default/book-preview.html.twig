@@ -1,7 +1,7 @@
 {% block body %}
 
-  <div class="col-md-3 col-sm-3 col-xs-6">
-    <div class="panel panel-default">
+  <div class="col-md-3 col-sm-4 col-xs-6">
+    <div class="panel panel-default">    
       <div class="book-cover-box">
         <img src="../images/book-cover/{{book.id}}.jpg" class="img-responsive" alt="" />
       </div>
@@ -17,7 +17,7 @@
           <a class="font-size-5" href="/books/{{book.id}}"><i class="fa fa-info-circle small-space2"></i>Szczegóły</a>
         </div>
         <a href="/add-to-cart?id={{book.id}}" id="add-book-button" type="submit" class="button"><i class="fa fa-shopping-cart small-space2"></i>Cena: {{book.price}}</a> 
-      </div>
+      </div>    
     </div>
   </div>
 

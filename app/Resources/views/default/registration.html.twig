@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 {% include 'default/header.html.twig' %}
-<div id="registration">
+<div id="registration-form">
 	<div class="container reg-form-position">
 		<div class="row">
 			<div class="col-md-6 col-centered">
@@ -9,7 +9,7 @@
 					<h2>Rejestracja</h2>
 					<form action="/registration" method="POST">
 						<label id="login-icon" for="name"><i class="icon-user"></i></label>
-						<input type="text" name="name" id="name" placeholder="Username" required/>
+						<input type="text" name="name" id="name" placeholder="Name" required/>
 						<label id="login-icon" for="surname"><i class="icon-user"></i></label>
 						<input type="text" name="surname" id="surname" placeholder="Surname" required/>
 						<label id="login-icon" for="email"><i class="icon-envelope "></i></label>
@@ -18,14 +18,12 @@
 						<input type="password" name="password" id="password" placeholder="Password" required/>
 						<label id="login-icon" for="password-confirm"><i class="icon-shield"></i></label>
 						<input type="password" name="password-confirm" id="password-confirm" placeholder="Confirm password" required/>
-						<label id="login-icon" for="address"><i class="icon-user"></i></label>
-						<input type="text" name="address" id="address" placeholder="address" required/>
-						<label id="login-icon" for="city"><i class="icon-user"></i></label>
-						<input type="text" name="city" id="city" placeholder="city" required/>
-						<label id="login-icon" for="postalCode"><i class="icon-user"></i></label>
-						<input type="text" name="postalCode" id="postalCode" placeholder="postalCode" required/>
-						<label id="login-icon" for="avatar"><i class="icon-user"></i></label>
-						<input type="text" name="avatar" id="avatar" placeholder="avatar" required/>
+						<label id="login-icon" for="address"><i class="icon-home"></i></label>
+						<input type="text" name="address" id="address" placeholder="Address" required/>
+						<label id="login-icon" for="city"><i class="icon-home"></i></label>
+						<input type="text" name="city" id="city" placeholder="City" required/>
+						<label id="login-icon" for="postalCode"><i class="icon-envelope"></i></label>
+						<input type="text" name="postalCode" id="postalCode" placeholder="Postal Code" required/>
 						<button type="submit" class="button">Zarejestruj</button>
 					</form>
 					<div class="goto-login">
