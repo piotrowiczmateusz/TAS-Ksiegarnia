@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Controller;
-
+//session_start();
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,11 +29,16 @@ class DashboardController extends Controller
         $query = $em->createQuery("SELECT c FROM AppBundle:Category c");
         $categories = $query->getResult();
 
+        $query = $em->createQuery("SELECT b.title FROM AppBundle:Book b");
+        $_SESSION["titles"] = $titles = $query->getResult();
+
+
         return $this->render('default/dashboard.html.twig', array(
           'name' => $session->get('name'),
           'bestsellers' => $bestsellers,
           'novelties' => $novelties,
-          'categories' => $categories)
+          'categories' => $categories,
+          'titles' => $titles)
         );
 
     }
