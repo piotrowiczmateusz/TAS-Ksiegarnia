@@ -26,9 +26,11 @@ class AddBookController extends Controller
           (isset($_POST['new'])) ? $isNew = true : $isNew = false;
           (isset($_POST['bestseller'])) ? $isBestseller = true : $isBestseller = false;
           $price = $_POST['price'];
-          $cover = $_POST['cover'];
+          // $cover = $_POST['cover'];
+          $isDiscount = false;
+          $discountPrice = 0;
 
-          $book = new Book($title, $author, $description, $category, $publisher, $cover, $date, $isNew, $isBestseller, $price, "0");
+          $book = new Book($title, $author, $description, $category, $publisher, "okladka", $date, $isNew, $isBestseller, $isDiscount, $price, $discountPrice, "0");
 
           $em = $this->getDoctrine()->getManager();
           $em->persist($book); // tells Doctrine you want to (eventually) save the Product (no queries yet)

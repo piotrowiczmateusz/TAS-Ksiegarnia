@@ -21,13 +21,24 @@ class OrderController extends Controller
     $session = $request->getSession();
     $cart = $session->get('cart');
 
-    if($session->get('name')) {
-      return $this->redirect('/order/step2');
+    if(empty($cart)) {
+
+      $message = "Wybierz produkty.";
+
+      return $this->render('default/alert.html.twig', array(
+        'msg' => $message)
+      );
+    } else {
+      if($session->get('name')) {
+        return $this->redirect('/order/step2');
+      }
+
+      return $this->render('default/order/step1.html.twig', array(
+        'cart' => $cart)
+      );
     }
 
-    return $this->render('default/order/step1.html.twig', array(
-      'cart' => $cart)
-    );
+
 
   }
 
@@ -46,11 +57,11 @@ class OrderController extends Controller
           $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('name' => $name));
 
           $name = $user->getName();
-          $surname = $user->getName();
+          $surname = $user->getSurname();
           $email = $user->getEmail();
-          $address = $user->getName();
-          $city = $user->getName();
-          $postalCode =$user->getName();
+          $address = $user->getAddress();
+          $city = $user->getCity();
+          $postalCode =$user->getPostalCode();
         }
         else
         {
@@ -92,7 +103,7 @@ class OrderController extends Controller
 
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('name' => $name));
         ($user) ? $userID = $user->getId() : $userID = 0;
-    
+
         $bookID = $book->getId();
         $date = new \DateTime();
         $type = "typ";

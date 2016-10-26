@@ -28,8 +28,13 @@ class RegistrationController extends Controller
      public function registrationAction()
      {
          $name = $_POST['name'];
+         $surname = $_POST['surname'];
          $email = $_POST['email'];
          $password = $_POST['password'];
+         $address = $_POST['address'];
+         $city = $_POST['city'];
+         $postalCode = $_POST['postalCode'];
+         $avatar = $_POST['avatar'];
 
          $message = "";
 
@@ -40,7 +45,7 @@ class RegistrationController extends Controller
          }
          else {
 
-             $user = new User($name, $email, $password);
+             $user = new User($name, $surname, $email, $password, $address, $city, $postalCode, $avatar);
 
              $em = $this->getDoctrine()->getManager();
              $em->persist($user); // tells Doctrine you want to (eventually) save the Product (no queries yet)

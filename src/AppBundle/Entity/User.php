@@ -11,17 +11,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
-	/**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+		/**
+	 * @ORM\Column(type="guid")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="UUID")
+	 */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $name;
+
+		/**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $surname;
 
     /**
      * @ORM\Column(type="string")
@@ -32,6 +37,39 @@ class User
      * @ORM\Column(type="string")
      */
     private $password;
+
+		/**
+		 * @ORM\Column(type="string")
+		 */
+		private $address;
+
+		/**
+		 * @ORM\Column(type="string")
+		 */
+		private $city;
+
+		/**
+		 * @ORM\Column(type="string")
+		 */
+		private $postalCode;
+
+		/**
+		 * @ORM\Column(type="string")
+		 */
+		private $avatar;
+
+
+    public function __construct($name, $surname, $email, $password, $address, $city, $postalCode, $avatar) {
+       $this->setName($name);
+			 $this->setSurname($surname);
+       $this->setEmail($email);
+       $this->setPassword($password);
+			 $this->setAddress($address);
+			 $this->setCity($city);
+			 $this->setPostalCode($postalCode);
+			 $this->setAvatar($avatar);
+   }
+
 
     /**
      * Get id
@@ -65,6 +103,30 @@ class User
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return User
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
     }
 
     /**
@@ -115,10 +177,99 @@ class User
         return $this->password;
     }
 
-    public function __construct($name, $email, $password) {
-       $this->setName($name);
-       $this->setEmail($email);
-       $this->setPassword($password);
-   }
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
 
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set postalCode
+     *
+     * @param string $postalCode
+     *
+     * @return User
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * Get postalCode
+     *
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
 }

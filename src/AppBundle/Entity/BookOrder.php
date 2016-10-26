@@ -11,19 +11,19 @@ use Doctrine\ORM\Mapping as ORM;
 class BookOrder
 {
 	/**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+	 * @ORM\Column(type="guid")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="UUID")
+	 */
 		private $id;
 
 		/**
-		 * @ORM\Column(type="integer")
+		 * @ORM\Column(type="string")
 		 */
     private $userId;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $bookId;
 
@@ -37,10 +37,19 @@ class BookOrder
      */
     private $orderType;
 
+
+
+		public function __construct($userId, $bookId, $orderDate, $orderType) {
+			 $this->setuserId($userId);
+			 $this->setbookId($bookId);
+			 $this->setOrderDate($orderDate);
+			 $this->setOrderType($orderType);
+	 }
+
     /**
      * Get id
      *
-     * @return integer
+     * @return guid
      */
     public function getId()
     {
@@ -50,11 +59,11 @@ class BookOrder
     /**
      * Set userId
      *
-     * @param integer $userId
+     * @param string $userId
      *
-     * @return Order
+     * @return BookOrder
      */
-    public function setuserId($userId)
+    public function setUserId($userId)
     {
         $this->userId = $userId;
 
@@ -64,9 +73,9 @@ class BookOrder
     /**
      * Get userId
      *
-     * @return integer
+     * @return string
      */
-    public function getuserId()
+    public function getUserId()
     {
         return $this->userId;
     }
@@ -74,11 +83,11 @@ class BookOrder
     /**
      * Set bookId
      *
-     * @param integer $bookId
+     * @param string $bookId
      *
-     * @return Order
+     * @return BookOrder
      */
-    public function setbookId($bookId)
+    public function setBookId($bookId)
     {
         $this->bookId = $bookId;
 
@@ -88,9 +97,9 @@ class BookOrder
     /**
      * Get bookId
      *
-     * @return integer
+     * @return string
      */
-    public function getbookId()
+    public function getBookId()
     {
         return $this->bookId;
     }
@@ -98,9 +107,9 @@ class BookOrder
     /**
      * Set orderDate
      *
-     * @param \datetime $orderDate
+     * @param \DateTime $orderDate
      *
-     * @return Order
+     * @return BookOrder
      */
     public function setOrderDate($orderDate)
     {
@@ -112,7 +121,7 @@ class BookOrder
     /**
      * Get orderDate
      *
-     * @return \datetime
+     * @return \DateTime
      */
     public function getOrderDate()
     {
@@ -124,7 +133,7 @@ class BookOrder
      *
      * @param string $orderType
      *
-     * @return Order
+     * @return BookOrder
      */
     public function setOrderType($orderType)
     {
@@ -142,11 +151,4 @@ class BookOrder
     {
         return $this->orderType;
     }
-
-		public function __construct($userId, $bookId, $orderDate, $orderType) {
-			 $this->setuserId($userId);
-			 $this->setbookId($bookId);
-			 $this->setOrderDate($orderDate);
-			 $this->setOrderType($orderType);
-	 }
 }

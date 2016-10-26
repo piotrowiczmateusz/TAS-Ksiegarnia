@@ -19,7 +19,7 @@ class BookDetailsController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.id = ".$id);
+      $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.id = '".$id."'");
       $books = $query->getResult();
 
       $query = $em->createQuery("SELECT c FROM AppBundle:Category c");
