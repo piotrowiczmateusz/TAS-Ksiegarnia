@@ -11,8 +11,7 @@ $(function()
   //     }
   //     a += 1;
   // }
-let titles = '<%= $session->get("titles")%>';
-alert(titles);
+
   $("#search").on("input",function(){
 
 
