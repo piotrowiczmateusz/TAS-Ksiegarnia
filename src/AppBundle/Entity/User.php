@@ -4,6 +4,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -54,21 +55,28 @@ class User
 		private $postalCode;
 
 		/**
-		 * @ORM\Column(type="string")
-		 */
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
 		private $avatar;
 
 
-    public function __construct($name, $surname, $email, $password, $address, $city, $postalCode, $avatar) {
-       $this->setName($name);
-			 $this->setSurname($surname);
-       $this->setEmail($email);
-       $this->setPassword($password);
-			 $this->setAddress($address);
-			 $this->setCity($city);
-			 $this->setPostalCode($postalCode);
-			 $this->setAvatar($avatar);
+    public function __construct() {
+
    }
+
+	 public function create($name, $surname, $email, $password, $address, $city, $postalCode, $avatar) {
+		 $instance = new self();
+		 $instance->setName($name);
+		 $instance->setSurname($surname);
+		 $instance->setEmail($email);
+		 $instance->setPassword($password);
+		 $instance->setAddress($address);
+		 $instance->setCity($city);
+		 $instance->setPostalCode($postalCode);
+		 $instance->setAvatar($avatar);
+		 return $instance;
+	 }
 
 
     /**

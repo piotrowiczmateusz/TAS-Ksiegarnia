@@ -2,6 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,53 +19,58 @@ use AppBundle\Entity\Category;
 
 class AddBookController extends Controller
 {
+
     /**
      * @Route("/add-book")
      */
     public function addBookAction(Request $request)
     {
-
-          $title = $_POST['title'];
-          $author = $_POST['author'];
-          $description = $_POST['description'];
-          $category = $_POST['category'];
-          $publisher = $_POST['publisher'];
-          $date = $_POST['date'];
-          (isset($_POST['new'])) ? $isNew = true : $isNew = false;
-          (isset($_POST['bestseller'])) ? $isBestseller = true : $isBestseller = false;
-          $price = $_POST['price'];
-          // $cover = $_POST['cover'];
-          $isDiscount = false;
-          $discountPrice = 0;
-
-          $book = new Book($title, $author, $description, $category, $publisher, "okladka", $date, $isNew, $isBestseller, $isDiscount, $price, $discountPrice, "0");
-
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($book); // tells Doctrine you want to (eventually) save the Product (no queries yet)
-          $em->flush(); // actually executes the queries (i.e. the INSERT query)
-
-          $message = "Dodano ksiązkę: " . $book->getTitle();
-
-          return $this->render('default/alert.html.twig', array('msg' => $message));
-        }
-
-    /**
-     * @Route("/add-book-form")
-     */
-    public function addBookFormAction(Request $request)
-    {
-
         $session = $request->getSession();
 
+        $book = new Book();
+
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery("SELECT c FROM AppBundle:Category c");
+        $query = $em->createQuery("SELECT c.title FROM AppBundle:Category c");
         $categories = $query->getResult();
 
-        return $this->render('default/add-book.html.twig', array(
-          'name' => $session->get('name'),
-          'categories' => $categories
-        ));
-    }
+        $form = $this->createFormBuilder($book)
+            ->add('title', TextType::class, array('label' => 'Tytuł'))
+            ->add('author', TextType::class, array('label' => 'Autor'))
+            ->add('description', TextareaType::class, array('label' => 'Opis'))
+            ->add('category', ChoiceType::class, array('label' => 'Kategoria','choices'  => $categories))
+            ->add('publisher', TextType::class, array('label' => 'Wydawca'))
+            ->add('cover', FileType::class, array('label' => 'Okładka'))
+            ->add('date', IntegerType::class, array('label' => 'Rok wydania'))
+            ->add('isNew', CheckboxType::class, array('label' => 'Nowość', 'required' => false))
+            ->add('isBestseller', CheckboxType::class, array('label' => 'Bestseller', 'required' => false))
+            ->add('isDiscount', CheckboxType::class, array('label' => 'Przecena', 'required' => false))
+            ->add('price', IntegerType::class, array('label' => 'Cena'))
+            ->add('discountPrice', IntegerType::class, array('label' => 'Przecena'))
+            ->add('save', SubmitType::class, array('label' => 'Dodaj'))
+            ->getForm();
 
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $book = $form->getData();
+
+                $file = $book->getCover();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('covers_directory'), $fileName);
+
+                $book->setCover($fileName);
+                $book->setRating("0");
+
+                $em->persist($book);
+                $em->flush();
+
+            }
+
+          return $this->render('default/add-book.html.twig', array(
+              'form' => $form->createView(),
+              'name' => $session->get('name'),
+              'categories' => $categories
+          ));
+    }
 }
-?>

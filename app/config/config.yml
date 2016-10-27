@@ -7,6 +7,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    covers_directory: '%kernel.root_dir%/../web/uploads/covers'
+    avatars_directory: '%kernel.root_dir%/../web/uploads/avatars'
 
 framework:
     #esi:             ~
@@ -36,6 +38,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - bootstrap_3_layout.html.twig
 
 # Doctrine Configuration
 doctrine:

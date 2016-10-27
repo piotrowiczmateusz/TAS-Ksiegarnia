@@ -12,7 +12,8 @@
               <h2>Moje dane:</h2>
 						  <ul>
                 {% for u in user %}
-						    <li>Imie: {{u.name}}</li>
+                <img src="../uploads/avatars/{{u.avatar}}" alt="" width="200" height="200" />
+						    <li>Imię: {{u.name}}</li>
                 <li>Nazwisko: {{u.surname}}</li>
                 <li>E-mail: {{u.email}}</li>
                 <li>Ulica i nr mieszkania: {{u.address}}</li>
@@ -25,11 +26,15 @@
           <div class="col-md-6">
     				<div class="panel panel-default">
 						  <h2>Moje zamowienia:</h2>
+              {% if orders is empty %}
+                <p>Brak zamówień.</p>
+              {% else %}
               <ul>
                 {% for o in orders %}
 						    <li>Id zamowienia: {{o.id}}</li>
                 {% endfor %}
               </ul>
+              {% endif %}
     				</div>
     			</div>
     		</div>
