@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Paź 2016, 22:42
--- Wersja serwera: 5.6.24
--- Wersja PHP: 5.6.8
+-- Czas generowania: 30 Paź 2016, 22:16
+-- Wersja serwera: 5.6.21
+-- Wersja PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,12 +36,34 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id`, `title`) VALUES
-('03a0205d-9c83-11e6-b712-d850e6df78c4', 'Historyczna'),
-('094fd29b-9c83-11e6-b712-d850e6df78c4', 'Fantastyka'),
-('0d1940e8-9c83-11e6-b712-d850e6df78c4', 'Horror'),
-('13fa2494-9c83-11e6-b712-d850e6df78c4', 'Klasyka'),
-('19708a3d-9c83-11e6-b712-d850e6df78c4', 'Literatura młodzieżowa'),
-('ff91dce6-9c82-11e6-b712-d850e6df78c4', 'Biografia');
+('1', 'Astronomiczne'),
+('10', 'Informatyka'),
+('11', 'Klasyka'),
+('12', 'Komiksy'),
+('13', 'Kryminał'),
+('14', 'Kulinaria'),
+('15', 'Matematyka'),
+('16', 'Medycyna'),
+('17', 'Militaria'),
+('18', 'Motoryzacja'),
+('19', 'Muzyka'),
+('2', 'Biografie'),
+('20', 'Podróżnicze'),
+('21', 'Poezja'),
+('22', 'Powieść'),
+('23', 'Przygodowa'),
+('24', 'Religia'),
+('25', 'Słowniki'),
+('26', 'Sport'),
+('27', 'Turystyka'),
+('28', 'Zrowie'),
+('3', 'Dramaty'),
+('4', 'Encyklopedie'),
+('5', 'Fantastyka'),
+('6', 'Filozofia'),
+('7', 'Finanse'),
+('8', 'Historyczna'),
+('9', 'Horror');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -51,7 +73,7 @@ INSERT INTO `category` (`id`, `title`) VALUES
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -8,10 +8,12 @@
     	<div class="container">
         <div class="row">
           {% include 'default/sidebar.html.twig' %}
-          <div class="col-md-9">
-            <div class="panel panel-default">
-              <h2>Kategoria: {{category}}</h2>
-              <div class="row">
+          <div class="col-md-9">		  
+            <div class="panel panel-default">			
+                <hr class="style14">
+                <div class="headline-font text-center">Kategoria: {{category}}</div>
+                <hr class="style14">
+            <div class="row">
                 {% for book in books %}
                   {% include 'default/book-preview.html.twig' %}
                 {% endfor %}
@@ -25,3 +27,9 @@
     {% include 'default/footer.html.twig' %}
 
 {% endblock %}
+
+
+
+
+
+
