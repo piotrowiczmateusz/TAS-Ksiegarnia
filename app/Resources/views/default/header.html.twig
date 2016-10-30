@@ -3,40 +3,46 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 left">
-				<span><img id="logo" src="images\logo.png" /></span>
+				<span><img id="logo" src="..\uploads\logo.png" /></span>
 				<a href="/" class="text-bold font-serif font-size-3 color-action single-space">Księgarnia</a>
 			</div>
 			<div class="col-md-8 right">
 				<nav  id="header-nav">
 					<ul>
+
 					{% if name is defined and name is not empty %}
 					<li class="dropdown">
 						<i class="fa fa-user"></i>
 						<a id="my-account" href="#" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Moje konto</a>
 						<div class="dropdown-content">
-							<a href="/add-book">Dodaj książkę</a>
+							<a href="/add-book-form">Dodaj książkę</a>
 							<a href="/my-account">Moje dane</a>
 							<a href="/settings">Ustawienia</a>
 							<a href="/logout">Wyloguj</a>
 						</div>
 					</li>
+
 					<li>
 						<i class="fa fa-shopping-cart double-space"></i>
 						<a href="/cart" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Koszyk</a>
 					</li>
+
 					{% else %}
+
 						<li>
 							<i class="fa fa-plus-circle"></i>
-							<a href="/registration" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">
+							<a href="/registration-form" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">
 								rejestracja
 							</a>
 						</li>
 						<li>
 							<i class="fa fa-sign-in double-space"></i>
-							<a href="/login" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">logowanie
+							<a href="/login-form" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">logowanie
 							</a>
 						</li>
+
 					{% endif %}
+
 					</ul>
 				</nav>
 			</div>
