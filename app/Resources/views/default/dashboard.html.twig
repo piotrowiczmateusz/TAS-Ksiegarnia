@@ -7,8 +7,10 @@
     <div id="main">
     	<div class="container">
         <div class="row">
-          <input id="search" type="text" autocomplete="off" placeholder="Szukaj książki..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Szukaj książki...'">
-          <div id="result"></div>
+          <div class="col-md-12">
+            <input id="search" class="form-control" type="text" autocomplete="off" placeholder="Szukaj książki..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Szukaj książki...'">
+            <div id="result"></div>
+          </div>
         </div>
         <div class="row">
           {% include 'default/sidebar.html.twig' %}
@@ -16,11 +18,10 @@
             {% if name is defined and name is not empty %}
             <div class="row">
               <div class="col-md-12">
-                <div class="panel panel-default">
+                <div id="hello-panel" class="panel panel-default">
                   <hr class="style14">
                   <div class="headline-font text-center"> Witaj, <strong>{{name}}</strong></div>
                   <hr class="style14">
-                  <!-- <a href="/logout" class="btn btn-default"><i class="fa fa-sign-out"></i> Wyloguj</a> -->
                 </div>
               </div>
             </div>
@@ -32,7 +33,7 @@
                   <h2 class="headline-font text-center">Bestsellery</h2>
                   <hr class="style14">
                   <div class="row">
-                  
+
                     {% for book in bestsellers %}
                       {% include 'default/book-preview.html.twig' %}
                     {% endfor %}
@@ -44,7 +45,7 @@
               <div class="col-md-12">
                 <div class="panel panel-default">
                   <hr class="style14">
-                  <h2 class="headline-font text-center">Nowosci</h2>
+                  <h2 class="headline-font text-center">Nowości</h2>
                   <hr class="style14">
                   <div class="row">
                     {% for book in novelties %}

@@ -26,17 +26,45 @@
 /*--------------------------------------
 -------DISPLAY BOOK ON DASHBOARD--------
 --------------------------------------*/
+
+#flash {
+  margin-top: 90px;
+}
+
+.alert {
+  margin-bottom: 0;
+}
+
+body {
+  background: #FFF8B1;
+  padding-top: 30px;
+}
+
 #main{
   widows: 100%;
-  min-width: 550px;
-  padding-top: 80px;
+  min-width: 100vh;
+  padding-top: 30px;
   background: #FFF8B1;
+}
+
+#search {
+  margin-bottom: 30px;
+}
+
+#hello-panel hr {
+  margin: 0;
 }
 
 .panel{
   padding-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  /*margin-left: 10px;
+  margin-right: 10px;*/
+  padding: 15px;
+}
+
+.panel-footer {
+  margin: -15px;
+  margin-top: 25px;
 }
 
 .book-cover-box{
@@ -56,7 +84,7 @@
 .overlay {
   display: block;
   height: 220px;
-  width: 162px;
+  width: 150px;
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   position: absolute;
@@ -145,7 +173,8 @@
   padding-bottom: 5px;
 }
 
-#add-book-button{
+#add-book-button,
+.btn {
   width: 95%;
   max-width: 180px;
   height: 27px;
@@ -157,7 +186,7 @@
   font-size: 14px;
   font-weight: 600;
   color: white;
-  float: right;
+  border-color: transparent;
   text-decoration: none;
   text-align: center;
   border-radius: 5px;
@@ -169,7 +198,19 @@
   transition: all 0.1s linear 0s;
 }
 
-#add-book-button:hover{
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default:visited {
+  color: #fff;
+  border-color: transparent;
+}
+
+#add-book-button:hover,
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn:visited {
   top: 3px;
   background-color: #2E458B;
   -webkit-box-shadow: none;

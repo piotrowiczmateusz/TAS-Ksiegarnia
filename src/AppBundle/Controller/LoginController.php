@@ -2,14 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 
 class LoginController extends Controller
@@ -21,8 +22,6 @@ class LoginController extends Controller
   public function loginAction(Request $request)
   {
     $session = $request->getSession();
-
-    $message = "";
 
     $user = new User();
 
@@ -48,12 +47,12 @@ class LoginController extends Controller
                     $session->set('id', $findUser->getId());
                     $session->set('name', $findUser->getName());
 
+                    $this->addFlash('notice', 'Zalogowano poprawnie.');
                     return $this->redirect('/dashboard');
                 }
-                else { $message = "Niepoprawne hasło."; }
+                else { $this->addFlash('error', 'Niepoprawne hasło.'); }
             }
-            else { $message = "Użytkownik nie istnieje."; }
-            return $this->render('default/alert.html.twig', array('msg' => $message));
+            else { $this->addFlash('error', 'Użytkownik nie istnieje.'); }
         }
        return $this->render('default/login.html.twig', array(
          'form' => $form->createView()
@@ -80,10 +79,10 @@ class LoginController extends Controller
       $response->headers->clearCookie('cart') ;
       $response->send();
 
-      $response = $this->forward('AppBundle:Dashboard:index');
+      $this->addFlash('notice', 'Wylogowano poprawnie.');
 
-      return $response;
+      return $this->redirect('/dashboard');
+
   }
-
 
 }

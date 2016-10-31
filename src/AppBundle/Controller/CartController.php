@@ -1,10 +1,11 @@
 <?php
+
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends Controller
@@ -36,14 +37,12 @@ class CartController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.id = '".$id."'");
-        $book = $query->getResult();
+        $book = $em->getRepository('AppBundle:Book')->findOneById($id);
 
         ($session->get('cart') != null) ? $cart = $session->get('cart') : $cart = array();
 
         array_push($cart, $book);
 
-        $session = $request->getSession();
         $session->set('cart', $cart);
 
         return $this->redirect('/cart');

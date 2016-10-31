@@ -11,8 +11,8 @@ $(function()
   //     }
   //     a += 1;
   // }
-var name = JSON.parse('{{ name }}');
-  console.log(name);
+// var name = JSON.parse('{{ name }}');
+//   console.log(name);
 
   $("#search").on("input",function(){
 

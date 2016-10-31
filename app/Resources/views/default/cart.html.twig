@@ -12,22 +12,22 @@
               <h2>Aktualnie w koszyku:</h2>
               <span>Ilość przedmiotow w koszyku: {{cart|length}}</span>
               <div class="row">
-                {% for books in cart %}
+                {% for book in cart %}
                   <div class="col-md-3">
-                    {% for b in books %}
                     <ul>
-                      <li>Tytuł: {{b.title}}</li>
-                      <li>Autor: {{b.author}}</li>
-                      <li>Cena: {{b.price}}</li>
+                      <li>Tytuł: {{book.title}}</li>
+                      <li>Autor: {{book.author}}</li>
+                      <li>Cena: {{book.price}} zł</li>
                     </ul>
-                    <a href="/remove-from-cart?id={{b.id}}"><i class="fa fa-trash"></i> Usuń z koszyka</a>
-                    {% endfor %}
+                    <a href="/remove-from-cart?id={{book.id}}" class="btn btn-default"><i class="fa fa-trash"></i> Usuń z koszyka</a>
                   </div>
                 {% endfor %}
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <a href="/order"><i class="fa fa-shopping-cart"></i> Złoz zamowienie</a>
+                  <div class="panel-footer ">
+                    <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Złóż zamówienie</a>
+                  </div>
                 </div>
               </div>
     				</div>

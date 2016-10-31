@@ -2,6 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -10,12 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Book;
-use AppBundle\Entity\Category;
 
 class AddBookController extends Controller
 {
@@ -30,14 +31,16 @@ class AddBookController extends Controller
         $book = new Book();
 
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery("SELECT c.title FROM AppBundle:Category c");
-        $categories = $query->getResult();
+        $categories = $em->getRepository('AppBundle:Category')->findAll();
 
         $form = $this->createFormBuilder($book)
             ->add('title', TextType::class, array('label' => 'Tytuł'))
             ->add('author', TextType::class, array('label' => 'Autor'))
             ->add('description', TextareaType::class, array('label' => 'Opis'))
-            ->add('category', ChoiceType::class, array('label' => 'Kategoria','choices'  => $categories))
+            ->add('category', ChoiceType::class, array(
+              'label' => 'Kategoria',
+              'choices'  => $categories,
+              'choice_label' => 'title'))
             ->add('publisher', TextType::class, array('label' => 'Wydawca'))
             ->add('cover', FileType::class, array('label' => 'Okładka'))
             ->add('date', IntegerType::class, array('label' => 'Rok wydania'))
@@ -65,11 +68,13 @@ class AddBookController extends Controller
                 $em->persist($book);
                 $em->flush();
 
+                $this->addFlash('notice', 'Dodano nową książkę.');
+
             }
 
           return $this->render('default/add-book.html.twig', array(
-              'form' => $form->createView(),
               'name' => $session->get('name'),
+              'form' => $form->createView(),          
               'categories' => $categories
           ));
     }

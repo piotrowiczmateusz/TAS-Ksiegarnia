@@ -13,38 +13,34 @@
               <div class="row">
                 <div class="col-md-4">
                   <h3>Zamawiane produkty:</h3>
-                  {% for books in cart %}
-
-                      {% for b in books %}
+                  {% for book in cart %}
                       <ul>
-                        <li>Tytuł: {{b.title}}</li>
-                        <li>Autor: {{b.author}}</li>
-                        <li>Cena: {{b.price}}</li>
+                        <li>Tytuł: {{book.title}}</li>
+                        <li>Autor: {{book.author}}</li>
+                        <li>Cena: {{book.price}} zł</li>
                       </ul>
-                      {% endfor %}
-                  
                   {% endfor %}
                 </div>
                 <div class="col-md-4">
                   <h3>Dane kontaktowe:</h3>
                   <ul>
-                    <li>{{name}}</li>
-                    <li>{{surname}}</li>
-                    <li>{{email}}</li>
+                    <li>Imie: {{user.name}}</li>
+                    <li>Nazwisko: {{user.surname}}</li>
+                    <li>E-mail: {{user.email}}</li>
                   </ul>
                 </div>
                 <div class="col-md-4">
                   <h3>Adres dostawy: </h3>
                   <ul>
-                    <li>Ulica i nr mieszkania: {{address}} </li>
-                    <li>Miasto: {{city}} </li>
-                    <li>Kod pocztowy: {{postalCode}} </li>
+                    <li>Ulica i nr mieszkania: {{user.address}} </li>
+                    <li>Miasto: {{user.city}} </li>
+                    <li>Kod pocztowy: {{user.postalCode}} </li>
                   </ul>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 left">
-                  <a href="/order" class="btn btn-default"><i class="fa fa-arrow-left"></i> Powrot</a><br>
+                  <a href="/order" class="btn btn-default"><i class="fa fa-arrow-left"></i> Powrót</a><br>
                 </div>
                 <div class="col-md-6 right">
                   <a href="/order/final" class="btn btn-default"><i class="fa fa-check"></i> Zloz zamowienie</a>

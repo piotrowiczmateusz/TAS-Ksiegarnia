@@ -1,12 +1,12 @@
 <?php
+
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use AppBundle\Entity\Book;
 
 class BookDetailsController extends Controller
 {
@@ -19,11 +19,8 @@ class BookDetailsController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.id = '".$id."'");
-      $books = $query->getResult();
-
-      $query = $em->createQuery("SELECT c FROM AppBundle:Category c");
-      $categories = $query->getResult();
+      $books = $em->getRepository('AppBundle:Book')->findById($id);
+      $categories = $em->getRepository('AppBundle:Category')->findAll();
 
       return $this->render('default/book-details.html.twig', array(
         'name' => $session->get('name'),

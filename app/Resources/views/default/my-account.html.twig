@@ -11,27 +11,33 @@
     				<div class="panel panel-default">
               <h2>Moje dane:</h2>
 						  <ul>
-                {% for u in user %}
-                <img src="../uploads/avatars/{{u.avatar}}" alt="" width="200" height="200" />
-						    <li>Imię: {{u.name}}</li>
-                <li>Nazwisko: {{u.surname}}</li>
-                <li>E-mail: {{u.email}}</li>
-                <li>Ulica i nr mieszkania: {{u.address}}</li>
-                <li>Miasto: {{u.city}}</li>
-                <li>Kod pocztowy: {{u.postalCode}}</li>
-                {% endfor %}
+                <img src="../uploads/avatars/{{user.avatar}}" alt="" width="200" height="200" />
+						    <li>Imię: {{user.name}}</li>
+                <li>Nazwisko: {{user.surname}}</li>
+                <li>E-mail: {{user.email}}</li>
+                <li>Ulica i nr mieszkania: {{user.address}}</li>
+                <li>Miasto: {{user.city}}</li>
+                <li>Kod pocztowy: {{user.postalCode}}</li>
 						  </ul>
+              <button class="btn btn-default" data-toggle="modal" data-target="#edit-form">
+                <i class="fa fa-gear"></i> Edytuj dane
+              </button>
     				</div>
     			</div>
           <div class="col-md-6">
     				<div class="panel panel-default">
-						  <h2>Moje zamowienia:</h2>
+						  <h2>Historia zamówień:</h2>
               {% if orders is empty %}
                 <p>Brak zamówień.</p>
               {% else %}
               <ul>
                 {% for o in orders %}
-						    <li>Id zamowienia: {{o.id}}</li>
+						    <li>
+                  <ul>
+                    <li>Data zamówienia: {{o.orderDate|date('Y-m-d H:i:s')}}</li>
+                    <li>Id zamówienia: <a href="/order-details?id={{o.id}}">{{o.id}}</a></li>
+                  </ul>
+                </li>
                 {% endfor %}
               </ul>
               {% endif %}
@@ -39,6 +45,25 @@
     			</div>
     		</div>
     	</div>
+    </div>
+
+    <div id="edit-form" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edytuj swoje dane:</h4>
+          </div>
+          <div class="modal-body">
+            {{ form_start(form) }}
+						{{ form_widget(form) }}
+            {{ form_end(form) }}
+            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+          </div>
+        </div>
+      </div>
     </div>
 
 {% endblock %}
