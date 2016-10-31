@@ -89,7 +89,7 @@
 
 .book-info-box{
   width: 100%;
-  height: 75px;
+  height: 90px;
   margin-top: 5px;
 }
 
@@ -185,6 +185,68 @@ hr.style14 {
   background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
   background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
 }
+
+#book-details{
+  width: 100%;
+  padding: 5px 15px 15px 15px;
+}
+
+#book-details-img-box{  
+  width: 100%;
+  height: 300px;
+  margin-top: 15px;
+}
+
+#book-details-img-box > img{
+  height: 300px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid black;
+}
+
+#book-details-info{
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.none-list-style{
+  list-style: none;
+}
+
+
+#add-book-to-cart{
+  width: 200px;
+  height: 27px;
+  padding: 6px 10px 0px 10px;
+  margin-top: 15px;
+  margin-left: 5px;
+  position: relative;
+  background-color: #3A57AF;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  float: left;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75);
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75);
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s;
+}
+
+#add-book-to-cart:hover{
+  top: 3px;
+  background-color: #2E458B;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
 
 *{
   margin: 0;
