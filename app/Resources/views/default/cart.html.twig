@@ -4,36 +4,52 @@
 
 {% include 'default/header.html.twig' %}
 
-    <div id="main">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-md-12">
-    				<div class="panel panel-default">
-              <h2>Aktualnie w koszyku:</h2>
-              <span>Ilość przedmiotow w koszyku: {{cart|length}}</span>
-              <div class="row">
-                {% for book in cart %}
-                  <div class="col-md-3">
-                    <ul>
-                      <li>Tytuł: {{book.title}}</li>
-                      <li>Autor: {{book.author}}</li>
-                      <li>Cena: {{book.price}} zł</li>
-                    </ul>
-                    <a href="/remove-from-cart?id={{book.id}}" class="btn btn-default"><i class="fa fa-trash"></i> Usuń z koszyka</a>
-                  </div>
-                {% endfor %}
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="panel-footer ">
-                    <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Złóż zamówienie</a>
-                  </div>
-                </div>
-              </div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+  <div id="main">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-3">
+          <p> sidebar 
+            po dołączeniu komponentu: 
+            include 'default/sidebar.html.twig'
+            Variable "categories" does not exist in default\sidebar.html.twig at line 18.
+          </p>
+        </div>
+        <div class="col-md-9">
+    			<div class="panel panel-default">
+            <hr class="style14">
+            <h2 class="headline-font text-center">Zawartość koszyka - aktualnie przedmiotów w koszyku: {{cart|length}}</h2>
+            <hr class="style14">
+            <table class="cart-table">
+            {% for book in cart %}
+              <tr>
+                <td>
+                  <img src="../uploads/covers/{{book.id}}.jpg" class="book-logo" alt="" />
+                </td>
+                <td>
+                  <h4>Tytuł: {{book.title}}</h4>
+                  <h5>Autor: {{book.author}}</h5>
+                  <a href="/remove-from-cart?id={{book.id}}"><i class="fa fa-trash"></i> Usuń z koszyka</a>
+                </td>
+                <td>
+                  <h4><strong>Cena: {{book.price}} zł</strong></h4>
+                </td>
+              </tr>
+            {% endfor %}            
+            </table>
+            <div class="submit-order-box">
+              <div class="submit-font">Łączna cena do zapłąty za {{cart|length}} przedmitów: 
+              <strong> ... zł </strong></div>
+              <a href="/dashboard" class="btn btn-default"><i class="fa fa-home"></i> Kontynuuj zakupy</a>
+              <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Zamów bez konta</a>
+              <a href="/login" class="btn btn-default"><i class="fa fa-sign-in"></i></i> Zaloguj się</a>
+              <a href="/registration" class="btn btn-default"><i class="fa fa-plus-circle"></i></i> Załóż konto</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+{% include 'default/footer.html.twig' %}
 
 {% endblock %}

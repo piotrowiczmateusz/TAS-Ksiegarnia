@@ -10,14 +10,15 @@
           {% include 'default/sidebar.html.twig' %}
           <div class="col-md-9">		  
             <div class="panel panel-default">			
-                <hr class="style14">
-                <div class="headline-font text-center">Kategoria: {{category}}</div>
-                <hr class="style14">
-            <div class="row">
+              <hr class="style14">
+              <div class="headline-font text-center">Kategoria: {{category}}</div>
+              <hr class="style14">
+              <div class="row">
                 {% for book in books %}
                   {% include 'default/book-preview.html.twig' %}
                 {% endfor %}
               </div>
+              <ul class="pagination"></ul>
             </div>
           </div>
         </div>

@@ -37,6 +37,7 @@
                     {% for book in bestsellers %}
                       {% include 'default/book-preview.html.twig' %}
                     {% endfor %}
+                    
                   </div>
                 </div>
               </div>
@@ -48,9 +49,11 @@
                   <h2 class="headline-font text-center">Nowości</h2>
                   <hr class="style14">
                   <div class="row">
+
                     {% for book in novelties %}
                       {% include 'default/book-preview.html.twig' %}
                     {% endfor %}
+                    
                   </div>
                 </div>
               </div>
@@ -60,6 +63,5 @@
     	</div>
     </div>
 
-    {% include 'default/footer.html.twig' %}
-
+{% include 'default/footer.html.twig' %}
 {% endblock %}
