@@ -32,7 +32,14 @@
             </table>
             <div class="submit-order-box">
               <div class="submit-font">Łączna cena do zapłąty za {{cart|length}} przedmitów:
-              <strong> ... zł </strong></div>
+                <strong>
+                  {% set price = 0 %}
+                  {% for book in cart %}
+                    {% set price = price + book.price %}
+                  {% endfor %}
+                  {{ price }} zł
+                </strong>
+              </div>
               <a href="/dashboard" class="btn btn-default"><i class="fa fa-home"></i> Kontynuuj zakupy</a>
               <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Zamów bez konta</a>
               <a href="/login" class="btn btn-default"><i class="fa fa-sign-in"></i></i> Zaloguj się</a>

@@ -62,13 +62,18 @@ class CartController extends Controller
 
       $cart = $session->get('cart');
 
+      $remove = true;
 
-      // ...
+      foreach($cart as $book => $b) {
+        if ($b->getId() == $id && $remove == true) {
+             unset($cart[$book]);
+             $remove = false;
+         }
+      }
 
-      return $this->render('default/cart.html.twig', array(
-        'name' => $session->get('name'),
-        'cart' => $cart)
-      );
+      $session->set('cart', $cart);
+
+      return $this->redirect('cart');
 
     }
 
