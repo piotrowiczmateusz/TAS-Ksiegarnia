@@ -7,13 +7,7 @@
   <div id="main">
     <div class="container">
     	<div class="row">
-    		<div class="col-md-3">
-          <p> sidebar 
-            po dołączeniu komponentu: 
-            include 'default/sidebar.html.twig'
-            Variable "categories" does not exist in default\sidebar.html.twig at line 18.
-          </p>
-        </div>
+        {% include 'default/sidebar.html.twig' %}
         <div class="col-md-9">
     			<div class="panel panel-default">
             <hr class="style14">
@@ -34,10 +28,10 @@
                   <h4><strong>Cena: {{book.price}} zł</strong></h4>
                 </td>
               </tr>
-            {% endfor %}            
+            {% endfor %}
             </table>
             <div class="submit-order-box">
-              <div class="submit-font">Łączna cena do zapłąty za {{cart|length}} przedmitów: 
+              <div class="submit-font">Łączna cena do zapłąty za {{cart|length}} przedmitów:
               <strong> ... zł </strong></div>
               <a href="/dashboard" class="btn btn-default"><i class="fa fa-home"></i> Kontynuuj zakupy</a>
               <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Zamów bez konta</a>
