@@ -19,7 +19,7 @@ class CartController extends Controller
     $session = $request->getSession();
     $cart = $session->get('cart');
     $em = $this->getDoctrine()->getManager();
-    $categories = $em->getRepository('AppBundle:Category')->findAll();
+    $categories = $em->getRepository('AppBundle:Category')->findAll(array(), array('title' => 'asc'));
 
     return $this->render('default/cart.html.twig', array(
       'name' => $session->get('name'),

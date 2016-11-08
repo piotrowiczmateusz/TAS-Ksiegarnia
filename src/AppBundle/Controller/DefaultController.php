@@ -18,4 +18,44 @@ class DefaultController extends Controller
     {
       return $this->redirect("/dashboard");
     }
+
+    /**
+     * @Route("/about")
+     */
+    public function aboutAction(Request $request)
+    {
+      $session = $request->getSession();
+
+      return $this->render('default/about.html.twig', array(
+        'name' => $session->get('name'))
+      );
+
+    }
+
+    /**
+     * @Route("/contact")
+     */
+    public function contactAction(Request $request)
+    {
+      $session = $request->getSession();
+
+      return $this->render('default/contact.html.twig', array(
+        'name' => $session->get('name'))
+      );
+
+    }
+
+    /**
+     * @Route("/help")
+     */
+    public function helpAction(Request $request)
+    {
+      $session = $request->getSession();
+
+      return $this->render('default/help.html.twig', array(
+        'name' => $session->get('name'))
+      );
+
+    }
+    
 }

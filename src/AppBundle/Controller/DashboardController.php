@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         $bestsellers = $em->getRepository('AppBundle:Book')->findByIsBestseller(true);
         $novelties = $em->getRepository('AppBundle:Book')->findByIsNew(true);
-        $categories = $em->getRepository('AppBundle:Category')->findAll();
+        $categories = $em->getRepository('AppBundle:Category')->findAll(array(), array('title' => 'asc'));
 
         return $this->render('default/dashboard.html.twig', array(
           'name' => $session->get('name'),

@@ -100,10 +100,7 @@ class OrderController extends Controller
 
         $this->addFlash('notice', 'Zamówienie zostało złożone. Potwierdzenie zostało wysłane na adres e-mail.');
 
-        return $this->render('default/cart.html.twig', array(
-          'name' => $session->get('name'),
-          'cart' => $session->get('cart'))
-        );
+        return $this->redirect('../cart');
 
       }
 

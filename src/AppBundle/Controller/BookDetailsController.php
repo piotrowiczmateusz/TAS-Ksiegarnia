@@ -20,7 +20,7 @@ class BookDetailsController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       $books = $em->getRepository('AppBundle:Book')->findById($id);
-      $categories = $em->getRepository('AppBundle:Category')->findAll();
+      $categories = $em->getRepository('AppBundle:Category')->findAll(array(), array('title' => 'asc'));
 
       return $this->render('default/book-details.html.twig', array(
         'name' => $session->get('name'),
