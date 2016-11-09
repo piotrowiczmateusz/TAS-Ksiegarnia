@@ -57,11 +57,13 @@ class AddBookController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $book = $form->getData();
+                $category = $book->getCategory()->getTitle();
 
                 $file = $book->getCover();
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 $file->move($this->getParameter('covers_directory'), $fileName);
 
+                $book->setCategory($category);
                 $book->setCover($fileName);
                 $book->setRating("0");
 
@@ -74,7 +76,7 @@ class AddBookController extends Controller
 
           return $this->render('default/add-book.html.twig', array(
               'name' => $session->get('name'),
-              'form' => $form->createView(),          
+              'form' => $form->createView(),
               'categories' => $categories
           ));
     }
