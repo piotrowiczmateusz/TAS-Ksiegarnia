@@ -33,11 +33,11 @@
                   <h2 class="headline-font text-center">Bestsellery</h2>
                   <hr class="style14">
                   <div class="row">
-
+                    <section class="regular">
                     {% for book in bestsellers %}
                       {% include 'default/book-preview.html.twig' %}
                     {% endfor %}
-                    
+                    </section> 
                   </div>
                 </div>
               </div>
@@ -49,11 +49,11 @@
                   <h2 class="headline-font text-center">Nowości</h2>
                   <hr class="style14">
                   <div class="row">
-
+                    <section class="regular">
                     {% for book in novelties %}
                       {% include 'default/book-preview.html.twig' %}
                     {% endfor %}
-                    
+                    </section>
                   </div>
                 </div>
               </div>
