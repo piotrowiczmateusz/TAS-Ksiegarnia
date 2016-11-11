@@ -1,3 +1,4 @@
+
 $(function()
 {
   // a = 0;
@@ -11,8 +12,10 @@ $(function()
   //     }
   //     a += 1;
   // }
-// var name = JSON.parse('{{ name }}');
-//   console.log(name);
+
+
+var foo = '{{ name }}';
+// alert(foo);
 
   $("#search").on("input",function(){
 

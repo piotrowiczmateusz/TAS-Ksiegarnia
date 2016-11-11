@@ -52,7 +52,7 @@ class Book
 		/**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Dodaj okładke.")
+     *
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $cover;
@@ -83,9 +83,14 @@ class Book
     private $discountPrice;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $rating;
+
+		/**
+     * @ORM\Column(type="integer")
+     */
+    private $votes;
 
 
     public function __construct() {
@@ -106,7 +111,8 @@ class Book
 		 $instance->setIsDiscount($isDiscount);
 		 $instance->setPrice($price);
 		 $instance->setDiscountPrice($discountPrice);
-		 $instance->setRating("0");
+		 $instance->setRating(0);
+		 $instance->setVotes(0);
 		 return $instance;
 	 }
 
@@ -412,13 +418,15 @@ class Book
     /**
      * Set rating
      *
-     * @param string $rating
+     * @param integer $rating
      *
      * @return Book
      */
     public function setRating($rating)
     {
         $this->rating = $rating;
+				// $this->rating = [];
+				// array_push($this->rating, $rating);
 
         return $this;
     }
@@ -426,10 +434,36 @@ class Book
     /**
      * Get rating
      *
-     * @return string
+     * @return integer
      */
     public function getRating()
     {
         return $this->rating;
     }
+
+		/**
+		 * Set votes
+		 *
+		 * @param integer $votes
+		 *
+		 * @return Book
+		 */
+		public function setvotes($votes)
+		{
+				$this->votes = $votes;
+				// $this->rating = [];
+				// array_push($this->rating, $rating);
+
+				return $this;
+		}
+
+		/**
+		 * Get votes
+		 *
+		 * @return integer
+		 */
+		public function getvotes()
+		{
+				return $this->votes;
+		}
 }

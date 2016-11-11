@@ -9,26 +9,36 @@
     <div class="row">
     {% include 'default/sidebar.html.twig' %}
     	<div class="col-md-9">
-    		<div class="panel panel-default">						  
+    		<div class="panel panel-default">
         {% for b in books %}
         <hr class="style14">
         <h2 class="headline-font text-center">{{b.title}}</h2>
         <hr class="style14">
         <div id="book-details" class="container">
           <div class="row">
-            <div class="col-md-4">         
-              <div id="book-details-img-box">  
+            <div class="col-md-4">
+              <div id="book-details-img-box">
                 <img src="../uploads/covers/{{b.cover}}" class="img-responsive" alt="" />
               </div>
-            </div>  
-            <div class="col-md-8">	
-              <ul id="book-details-info" class="font-size-4 font-serif none-list-style">					    
+            </div>
+            <div class="col-md-8">
+              <ul id="book-details-info" class="font-size-4 font-serif none-list-style">
+                <li><small>Liczba głosów: {{b.votes}}</small></li>
+                {% if b.votes == 0 %}
+                  Ocena: {{(b.rating) | round(2) }}
+                {% else %}
+                  Ocena: {{(b.rating / b.votes) | round(2) }}
+                {% endif %}
+
+                {{ form_start(form, {'multipart': true}) }}
+                {{ form_widget(form) |raw }}
+                {{ form_end(form) }}
                 <li><strong>Autor: </strong>{{b.author}}</li>
                 <li><strong>Kategoria: </strong>{{b.category}}</li>
                 <li><strong>Wydawnictwo: </strong>{{b.publisher}}</li>
                 <li><strong>Rok wydania: </strong>{{b.date}}</li>
                 <br>
-                <li class="font-size-5"><strong>Opis: </strong>{{b.description}}</li>                 
+                <li class="font-size-5"><strong>Opis: </strong>{{b.description}}</li>
                 <br>
                 {% if b.isBestseller == true %}
                 <li><strong>Ta książka jest bestsellerem!</strong></li>
@@ -45,12 +55,12 @@
                 <li><strong>Cena: {{b.price}} zł</strong></li>
                 {% endif %}
 
-                <a id="add-book-to-cart" href="/add-to-cart?id={{b.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>                
+                <a id="add-book-to-cart" href="/add-to-cart?id={{b.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
               </ul>
             </div>
           </div>
         </div>
-        {% endfor %}      
+        {% endfor %}
         </div>
     	</div>
     </div>

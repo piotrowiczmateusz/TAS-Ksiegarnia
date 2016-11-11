@@ -13,9 +13,18 @@
           <li class="text-bold font-serif font-size-5">{{book.title}}</li>
           <li class="font-serif font-size-5">{{book.author}}</li>
           <li class="font-serif font-size-6">{{book.category}}</li>
+          <li class="font-serif font-size-6">
+          </li>
         </ul>
       </div>
       <div class="book-submit-box">
+        {% if book.votes == 0 %}
+          {{(book.rating) | rating}}
+        {% else %}
+          {{(book.rating / book.votes) | rating}}
+        {% endif %}
+
+        <small>Liczba głosów: {{book.votes}}</small>
         <a href="/add-to-cart?id={{book.id}}" id="add-book-button" type="submit" class="button">
           <i class="fa fa-shopping-cart small-space2"></i>
           {% if book.isDiscount == true %}

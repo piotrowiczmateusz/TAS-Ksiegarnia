@@ -41,9 +41,12 @@
                 </strong>
               </div>
               <a href="/dashboard" class="btn btn-default"><i class="fa fa-home"></i> Kontynuuj zakupy</a>
-              <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Zamów bez konta</a>
-              <a href="/login" class="btn btn-default"><i class="fa fa-sign-in"></i></i> Zaloguj się</a>
-              <a href="/registration" class="btn btn-default"><i class="fa fa-plus-circle"></i></i> Załóż konto</a>
+              <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i>
+                Zamów{% if name is empty %} bez konta{% endif %}</a>
+              {% if name is empty %}
+                <a href="/login" class="btn btn-default"><i class="fa fa-sign-in"></i></i> Zaloguj się</a>
+                <a href="/registration" class="btn btn-default"><i class="fa fa-plus-circle"></i></i> Załóż konto</a>
+              {% endif %}
             </div>
           </div>
         </div>

@@ -29,9 +29,9 @@ class MyAccountController extends Controller
       $orders = $em->getRepository('AppBundle:BookOrder')->findByUserId($id);
 
       $form = $this->createFormBuilder($user)
-          ->add('name', TextType::class, array('label' => 'Imię'))
-          ->add('surname', TextType::class, array('label' => 'Nazwisko'))
-          ->add('email', TextType::class, array('label' => 'E-mail'))
+          ->add('name', TextType::class, array('label' => 'Imię', 'disabled' => true))
+          ->add('surname', TextType::class, array('label' => 'Nazwisko', 'disabled' => true))
+          ->add('email', TextType::class, array('label' => 'E-mail', 'disabled' => true))
           ->add('password', TextType::class, array('label' => 'Hasło'))
           ->add('address', TextType::class, array('label' => 'Ulica i nr mieszkania'))
           ->add('city', TextType::class, array('label' => 'Miasto'))

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitfdd3c324544eebe6aec239db514b77e0
+class ComposerStaticInit0ddc619896b8dc4bc42c45f0d41ed111
 {
     public static $files = array (
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
@@ -202,6 +202,13 @@ class ComposerStaticInitfdd3c324544eebe6aec239db514b77e0
     );
 
     public static $prefixesPsr0 = array (
+        'b' => 
+        array (
+            'blackknight467\\StarRatingBundle' => 
+            array (
+                0 => __DIR__ . '/..' . '/blackknight467/star-rating-bundle',
+            ),
+        ),
         'T' => 
         array (
             'Twig_' => 
@@ -301,11 +308,11 @@ class ComposerStaticInitfdd3c324544eebe6aec239db514b77e0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfdd3c324544eebe6aec239db514b77e0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfdd3c324544eebe6aec239db514b77e0::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitfdd3c324544eebe6aec239db514b77e0::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitfdd3c324544eebe6aec239db514b77e0::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitfdd3c324544eebe6aec239db514b77e0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0ddc619896b8dc4bc42c45f0d41ed111::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0ddc619896b8dc4bc42c45f0d41ed111::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit0ddc619896b8dc4bc42c45f0d41ed111::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0ddc619896b8dc4bc42c45f0d41ed111::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0ddc619896b8dc4bc42c45f0d41ed111::$classMap;
 
         }, null, ClassLoader::class);
     }
