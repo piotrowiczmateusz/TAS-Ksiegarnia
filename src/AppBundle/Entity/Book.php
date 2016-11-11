@@ -448,11 +448,9 @@ class Book
 		 *
 		 * @return Book
 		 */
-		public function setvotes($votes)
+		public function setVotes($votes)
 		{
 				$this->votes = $votes;
-				// $this->rating = [];
-				// array_push($this->rating, $rating);
 
 				return $this;
 		}
@@ -462,7 +460,7 @@ class Book
 		 *
 		 * @return integer
 		 */
-		public function getvotes()
+		public function getVotes()
 		{
 				return $this->votes;
 		}

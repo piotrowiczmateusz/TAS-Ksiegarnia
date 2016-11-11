@@ -80,6 +80,7 @@ class OrderController extends Controller
 
         $id = $session->get('id');
         $cart = $session->get('cart');
+        $name = $session->get('name');
 
         $book = array_pop($cart);
 
@@ -95,6 +96,20 @@ class OrderController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
         $em->flush();
+
+        $message = \Swift_Message::newInstance()
+          ->setSubject('Potwierdzenie zamowienia nr: '.$order->getId())
+          ->setFrom('ksiegarniatas@gmail.com')
+          ->setTo('piotrowiczmateusz@onet.pl')
+          ->setBody(
+              $this->renderView('email/default.html.twig', array(
+                    'order' => $order,
+                    'book' => $book,
+                    'user' => $user)
+              ),
+              'text/html'
+          );
+        $this->get('mailer')->send($message);
 
         $session->set('cart', array());
 

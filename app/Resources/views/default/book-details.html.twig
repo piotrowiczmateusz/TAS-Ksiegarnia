@@ -10,57 +10,57 @@
     {% include 'default/sidebar.html.twig' %}
     	<div class="col-md-9">
     		<div class="panel panel-default">
-        {% for b in books %}
         <hr class="style14">
-        <h2 class="headline-font text-center">{{b.title}}</h2>
+        <h2 class="headline-font text-center">{{book.title}}</h2>
         <hr class="style14">
         <div id="book-details" class="container">
           <div class="row">
             <div class="col-md-4">
               <div id="book-details-img-box">
-                <img src="../uploads/covers/{{b.cover}}" class="img-responsive" alt="" />
+                <img src="../uploads/covers/{{book.cover}}" class="img-responsive" alt="" />
               </div>
             </div>
             <div class="col-md-8">
               <ul id="book-details-info" class="font-size-4 font-serif none-list-style">
-                <li><small>Liczba głosów: {{b.votes}}</small></li>
-                {% if b.votes == 0 %}
-                  Ocena: {{(b.rating) | round(2) }}
+                <li><small>Liczba głosów: {{book.votes}}</small></li>
+                {% if book.votes == 0 %}
+                  Ocena: {{(book.rating) | round(2) }}
                 {% else %}
-                  Ocena: {{(b.rating / b.votes) | round(2) }}
+                  Ocena: {{(book.rating / book.votes) | round(2) }}
                 {% endif %}
 
                 {{ form_start(form, {'multipart': true}) }}
                 {{ form_widget(form) |raw }}
                 {{ form_end(form) }}
-                <li><strong>Autor: </strong>{{b.author}}</li>
-                <li><strong>Kategoria: </strong>{{b.category}}</li>
-                <li><strong>Wydawnictwo: </strong>{{b.publisher}}</li>
-                <li><strong>Rok wydania: </strong>{{b.date}}</li>
+
+                <li><strong>Autor: </strong>{{book.author}}</li>
+                <li><strong>Kategoria: </strong>{{book.category}}</li>
+                <li><strong>Wydawnictwo: </strong>{{book.publisher}}</li>
+                <li><strong>Rok wydania: </strong>{{book.date}}</li>
                 <br>
-                <li class="font-size-5"><strong>Opis: </strong>{{b.description}}</li>
+                <li class="font-size-5"><strong>Opis: </strong>{{book.description}}</li>
                 <br>
-                {% if b.isBestseller == true %}
-                <li><strong>Ta książka jest bestsellerem!</strong></li>
+
+                {% if book.isBestseller == true %}
+                  <li><strong>Ta książka jest bestsellerem!</strong></li>
                 {% endif %}
 
-                {% if b.isNew == true %}
-                <li><strong>Ta książka to nowość!</strong></li>
+                {% if book.isNew == true %}
+                  <li><strong>Ta książka to nowość!</strong></li>
                 {% endif %}
 
-                {% if b.isDiscount == true %}
-                <li>Cena: <span class="old-price">{{b.discountPrice}}</span> {{b.price}} zł</li>
+                {% if book.isDiscount == true %}
+                  <li>Cena: <span class="old-price">{{book.discountPrice}}</span> {{book.price}} zł</li>
                 {% else %}
-                <br>
-                <li><strong>Cena: {{b.price}} zł</strong></li>
+                  <br>
+                  <li><strong>Cena: {{book.price}} zł</strong></li>
                 {% endif %}
 
-                <a id="add-book-to-cart" href="/add-to-cart?id={{b.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
+                <a id="add-book-to-cart" href="/add-to-cart?id={{book.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
               </ul>
             </div>
           </div>
         </div>
-        {% endfor %}
         </div>
     	</div>
     </div>

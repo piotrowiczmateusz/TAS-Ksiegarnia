@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use blackknight467\StarRatingBundle\Form\RatingType;
 
-use AppBundle\Entity\Book;use blackknight467\StarRatingBundle\Form\RatingType;
+use AppBundle\Entity\Book;
 
 class BookDetailsController extends Controller
 {
@@ -25,14 +25,14 @@ class BookDetailsController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $books = $em->getRepository('AppBundle:Book')->findById($id);
       $categories = $em->getRepository('AppBundle:Category')->findAll(array(), array('title' => 'asc'));
-
       $book = $em->getRepository('AppBundle:Book')->findOneById($id);
+
       $rating = $book->getRating();
       $votes = $book->getvotes();
-      if($votes == 0) { $votes = 1; }
       $cover = $book->getCover();
+
+      if($votes == 0) { $votes = 1; }
 
       $form = $this->createFormBuilder($book)
           ->add('rating', RatingType::class, [
@@ -48,9 +48,8 @@ class BookDetailsController extends Controller
           if ($form->isSubmitted() && $form->isValid()) {
 
               $book->setCover($cover);
-
               $book->setRating($book->getRating() + $rating);
-              $book->setvotes($book->getvotes()+1);
+              $book->setVotes($book->getVotes()+1);
 
               $em->persist($book);
               $em->flush();
@@ -60,7 +59,7 @@ class BookDetailsController extends Controller
       return $this->render('default/book-details.html.twig', array(
         'name' => $session->get('name'),
         'categories' => $categories,
-        'books' => $books,
+        'book' => $book,
         'form' => $form->createView())
       );
 
