@@ -82,16 +82,19 @@ class OrderController extends Controller
         $cart = $session->get('cart');
         $name = $session->get('name');
 
-        $book = array_pop($cart);
-
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneById($id);
         ($user) ? $userID = $user->getId() : $userID = 0;
 
-        $bookID = $book->getId();
-        $date = new \DateTime();
-        $type = "typ";
+        $bookIds = array();
+        $books = array();
 
-        $order = new BookOrder($userID, $bookID, $date, $type);
+        foreach($cart as $book) {
+          $bookId = $book->getId();
+          array_push($bookIds, $bookId);
+          array_push($books, $book);
+        }
+
+        $order = new BookOrder($userID, serialize($bookIds), new \DateTime());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
@@ -104,7 +107,7 @@ class OrderController extends Controller
           ->setBody(
               $this->renderView('email/default.html.twig', array(
                     'order' => $order,
-                    'book' => $book,
+                    'books' => $books,
                     'user' => $user)
               ),
               'text/html'
@@ -133,13 +136,20 @@ class OrderController extends Controller
 
         $order = $em->getRepository('AppBundle:BookOrder')->findOneBy(array('id' => $id));
         $user = $em->getRepository('AppBundle:User')->findOneById($order->getUserId());
-        $book = $em->getRepository('AppBundle:Book')->findOneById($order->getBookId());
+
+        $bookIds = unserialize($order->getBooks());
+        $books = array();
+
+        foreach($bookIds as $bookId) {
+          $book = $em->getRepository('AppBundle:Book')->findOneById($bookId);
+          array_push($books, $book);
+        }
 
         return $this->render('default/order-details.html.twig', array(
           'name' => $name,
           'order' => $order,
           'user' => $user,
-          'book' => $book)
+          'books' => $books)
         );
 
     }

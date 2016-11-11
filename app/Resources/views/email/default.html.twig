@@ -16,14 +16,19 @@
               <div class="col-md-12">
                 <h1>Księgarnia TAS</h1>
                 <h3>Potwierdzenie zamówienia nr: {{order.id}}</h3>
-                <p>Data złożenia zamówienia: {{order.orderDate|date('Y-m-d H:i:s')}}</p>
+                <p>Data złożenia zamówienia: {{order.orderDate | date('Y-m-d H:i:s')}}</p>
               </div>
               <div class="col-md-4">
                 <h3>Zamawiane produkty:</h3>
                   <ul>
-                    <li>Tytuł: {{book.title}}</li>
-                    <li>Autor: {{book.author}}</li>
-                    <li>Cena: {{book.price}} zł</li>
+                      {% for book in books %}
+                        <li>
+                          <ul>
+                            <li>{{book.title}} - {{book.author}}</li>
+                            <li>Cena: {{book.price}} zł</li>
+                          </ul>
+                        </li>
+                      {% endfor %}
                   </ul>
               </div>
               <div class="col-md-4">

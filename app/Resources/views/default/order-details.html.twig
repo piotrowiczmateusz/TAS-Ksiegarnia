@@ -12,9 +12,16 @@
               <h2>Szczegóły zamówienia:</h2>
 						  <ul>
 						    <li>Id zamówienia: {{order.id}}</li>
+                <li>Data złożenia zamówienia: {{order.orderDate | date('Y-m-d H:i:s')}}</li>
                 <li>Imię i nazwisko zamawiającego: {{user.name}} {{user.surname}}</li>
-                <li>Zamówione książki: {{book.title}} - {{book.author}}</li>
-                <li>Cena: {{book.price}} zł</li>
+                {% for book in books %}
+                  <li>
+                    <ul>
+                      <li>{{book.title}} - {{book.author}}</li>
+                      <li>Cena: {{book.price}} zł</li>
+                    </ul>
+                  </li>  
+                {% endfor %}
 						  </ul>
     				</div>
     			</div>

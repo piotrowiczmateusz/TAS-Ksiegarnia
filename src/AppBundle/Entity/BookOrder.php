@@ -25,25 +25,18 @@ class BookOrder
     /**
      * @ORM\Column(type="string")
      */
-    private $bookId;
+    private $books;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $orderDate;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $orderType;
 
-
-
-		public function __construct($userId, $bookId, $orderDate, $orderType) {
+		public function __construct($userId, $books, $orderDate) {
 			 $this->setuserId($userId);
-			 $this->setbookId($bookId);
+			 $this->setbooks($books);
 			 $this->setOrderDate($orderDate);
-			 $this->setOrderType($orderType);
 	 }
 
     /**
@@ -81,27 +74,27 @@ class BookOrder
     }
 
     /**
-     * Set bookId
+     * Set books
      *
-     * @param string $bookId
+     * @param string $books
      *
      * @return BookOrder
      */
-    public function setBookId($bookId)
+    public function setBooks($books)
     {
-        $this->bookId = $bookId;
+        $this->books = $books;
 
         return $this;
     }
 
     /**
-     * Get bookId
+     * Get books
      *
      * @return string
      */
-    public function getBookId()
+    public function getBooks()
     {
-        return $this->bookId;
+        return $this->books;
     }
 
     /**
@@ -128,27 +121,4 @@ class BookOrder
         return $this->orderDate;
     }
 
-    /**
-     * Set orderType
-     *
-     * @param string $orderType
-     *
-     * @return BookOrder
-     */
-    public function setOrderType($orderType)
-    {
-        $this->orderType = $orderType;
-
-        return $this;
-    }
-
-    /**
-     * Get orderType
-     *
-     * @return string
-     */
-    public function getOrderType()
-    {
-        return $this->orderType;
-    }
 }
