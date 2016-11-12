@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block body %}
 
-{% include 'default/header.html.twig' %}
+{% block body %}
 
 	<div id="login-form">
 		<div class="container">
@@ -11,8 +10,7 @@
 						<h2>Logowanie</h2>
 								{{ form_start(form) }}
 								{{ form_widget(form) }}
-								{{ form_end(form) }}
-						
+								{{ form_end(form) }}			
 						<div class="goto-registration">
 							<a href="/registration">Nie masz jeszcze konta? Zarejestruj się!</a>
 						</div>

@@ -17,7 +17,7 @@ class CartController extends Controller
   public function indexAction(Request $request)
   {
     $session = $request->getSession();
-    $cart = $session->get('cart');
+    ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
     $em = $this->getDoctrine()->getManager();
     $categories = $em->getRepository('AppBundle:Category')->findAll(array(), array('title' => 'asc'));
 

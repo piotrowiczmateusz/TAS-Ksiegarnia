@@ -16,6 +16,7 @@ class DashboardController extends Controller
     public function indexAction(Request $request)
     {
         $session = $request->getSession();
+        ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -23,11 +24,16 @@ class DashboardController extends Controller
         $novelties = $em->getRepository('AppBundle:Book')->findByIsNew(true);
         $categories = $em->getRepository('AppBundle:Category')->findAll(array(), array('title' => 'asc'));
 
+        $query = $em->createQuery('SELECT b.id, b.title, b.author FROM AppBundle:Book b');
+        $books = htmlspecialchars_decode(json_encode($query->getResult()));
+
         return $this->render('default/dashboard.html.twig', array(
           'name' => $session->get('name'),
+          'cart' => $cart,
           'bestsellers' => $bestsellers,
           'novelties' => $novelties,
-          'categories' => $categories)
+          'categories' => $categories,
+          'books' => $books)
         );
 
     }

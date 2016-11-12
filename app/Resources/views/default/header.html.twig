@@ -17,14 +17,22 @@
 						<div class="dropdown-content">
 							<a href="/add-book">Dodaj książkę</a>
 							<a href="/my-account">Moje dane</a>
-							<a href="/settings">Ustawienia</a>
 							<a href="/logout">Wyloguj</a>
 						</div>
 					</li>
 
 					<li>
 						<i class="fa fa-shopping-cart double-space"></i>
-						<a href="/cart" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Koszyk</a>
+						<a href="/cart" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">
+							Koszyk
+							<span class="cart-length">
+								{% if cart is defined%}
+									{{cart|length}}
+								{% else %}
+									0
+								{% endif %}
+							</span>
+						</a>
 					</li>
 
 					{% else %}

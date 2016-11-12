@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html>
     <head>
 
@@ -40,7 +40,12 @@
 
     </head>
     <body>
+        {% include 'default/header.html.twig' %}
+
         {% block body %}{% endblock %}
+
+        {% include 'default/footer.html.twig' %}
+
         {% block javascripts %}
             <script src="https://use.fontawesome.com/f0c1244ad5.js"></script>
             <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
@@ -49,7 +54,7 @@
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/slick.js') }}" charset="utf-8"></script>
             <script type="text/javascript" src="{{ asset('js/slider.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/livesearch.js') }}"></script>
+
         {% endblock %}
     </body>
 </html>

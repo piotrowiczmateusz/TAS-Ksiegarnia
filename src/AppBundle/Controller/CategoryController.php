@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function indexAction(Request $request, $id)
     {
       $session = $request->getSession();
+      ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
       $em = $this->getDoctrine()->getManager();
 
@@ -25,6 +26,7 @@ class CategoryController extends Controller
 
       return $this->render('default/category.html.twig', array(
         'name' => $session->get('name'),
+        'cart' => $cart,
         'category' => $category->getTitle(),
         'categories' => $categories,
         'books' => $books)

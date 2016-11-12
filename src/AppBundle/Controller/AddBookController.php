@@ -29,6 +29,7 @@ class AddBookController extends Controller
     public function addBookAction(Request $request)
     {
         $session = $request->getSession();
+        ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
         $book = new Book();
 
@@ -72,7 +73,6 @@ class AddBookController extends Controller
                     $book->setCover("");
                 }
 
-
                 $book->setCategory($category);
                 $book->setRating(0);
                 $book->setvotes(0);
@@ -86,6 +86,7 @@ class AddBookController extends Controller
 
           return $this->render('default/add-book.html.twig', array(
               'name' => $session->get('name'),
+              'cart' => $cart,
               'form' => $form->createView(),
               'categories' => $categories,
               'rate' => $rate

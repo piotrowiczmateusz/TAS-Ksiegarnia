@@ -128,6 +128,7 @@ class OrderController extends Controller
       public function orderDetails(Request $request)
       {
         $session = $request->getSession();
+        ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
         $name = $session->get('name');
         $id = $_GET['id'];
@@ -147,6 +148,7 @@ class OrderController extends Controller
 
         return $this->render('default/order-details.html.twig', array(
           'name' => $name,
+          'cart' => $cart,
           'order' => $order,
           'user' => $user,
           'books' => $books)

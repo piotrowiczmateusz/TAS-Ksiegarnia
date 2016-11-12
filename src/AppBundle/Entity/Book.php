@@ -53,7 +53,7 @@ class Book
      * @ORM\Column(type="string")
      *
      *
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\File(mimeTypes={ "image/*" })
      */
     private $cover;
 

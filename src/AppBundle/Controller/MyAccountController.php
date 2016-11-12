@@ -21,12 +21,13 @@ class MyAccountController extends Controller
     {
 
       $session = $request->getSession();
+      ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
       $id = $session->get('id');
 
       $em = $this->getDoctrine()->getManager();
 
       $user = $em->getRepository('AppBundle:User')->findOneBy(array('id' => $id));
-      $orders = $em->getRepository('AppBundle:BookOrder')->findByUserId($id);
+      $orders = $em->getRepository('AppBundle:BookOrder')->findByUserId($id, array('orderDate' => 'asc'));
 
       $form = $this->createFormBuilder($user)
           ->add('name', TextType::class, array('label' => 'Imię', 'disabled' => true))
@@ -62,6 +63,7 @@ class MyAccountController extends Controller
 
       return $this->render('default/my-account.html.twig', array(
         'name' => $session->get('name'),
+        'cart' => $cart,
         'form' => $form->createView(),
         'user' => $user,
         'orders' => $orders)

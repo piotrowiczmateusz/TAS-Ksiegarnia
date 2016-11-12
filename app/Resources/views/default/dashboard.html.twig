@@ -2,19 +2,52 @@
 
 {% block body %}
 
-{% include 'default/header.html.twig' %}
+<script language="javascript">
 
-<script>
+$(function() {
 
+    var books = $.parseJSON('{{ books | raw }}');
 
+    $("#search").on("input", function() {
+
+        var search = $("#search").val();
+        var searchBy = $("#searchBy").val();
+        var result = "";
+
+        if (search.length > 0) {
+
+            for (var i = 0; i < books.length; i++) {
+              if(searchBy == "Tytuł") {
+                if (books[i].title.toUpperCase().startsWith(search.toUpperCase())) {
+                    result += "<div class='search-book'><a href='/books/" + books[i].id + "'>" + books[i].title + " - " + books[i].author + "</a></div>";
+                }
+              } else if (searchBy == "Autor") {
+                if (books[i].author.toUpperCase().startsWith(search.toUpperCase())) {
+                    result += "<div class='search-book'><a href='/books/" + books[i].id + "'>" + books[i].author + " - " + books[i].title + "</a></div>";
+                }
+              }
+            }
+        } else {
+          result = "";
+        }
+          $("#result").html(result);
+    });
+});
 </script>
 
     <div id="main">
     	<div class="container">
         <div class="row">
           <div class="col-md-12">
-            <input id="search" class="form-control" type="text" autocomplete="off" placeholder="Szukaj książki..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Szukaj książki...'">
-            <div id="result"></div>
+            <div id="search-container">
+              Szukaj wg:
+              <select id="searchBy">
+                <option>Tytuł</option>
+                <option>Autor</option>
+              </select>
+              <input id="search" class="form-control" type="text" autocomplete="off" placeholder="Szukaj książki..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Szukaj książki...'">
+              <div id="result"></div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -68,5 +101,4 @@
     	</div>
     </div>
 
-{% include 'default/footer.html.twig' %}
 {% endblock %}
