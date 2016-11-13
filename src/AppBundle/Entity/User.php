@@ -1,23 +1,24 @@
 <?php
 
-// src/AppBundle/Entity/User.php
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User
+class User extends BaseUser
 {
 		/**
 	 * @ORM\Column(type="guid")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="UUID")
 	 */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -28,16 +29,6 @@ class User
      * @ORM\Column(type="string", length=100)
      */
     private $surname;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $password;
 
 		/**
 		 * @ORM\Column(type="string")
@@ -56,21 +47,19 @@ class User
 
 		/**
      * @ORM\Column(type="string")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\File(mimeTypes={ "image/*" })
      */
 		private $avatar;
 
 
     public function __construct() {
-
+			parent::__construct();
    }
 
-	 public function create($name, $surname, $email, $password, $address, $city, $postalCode, $avatar) {
+	 public function create($name, $surname, $address, $city, $postalCode, $avatar) {
 		 $instance = new self();
 		 $instance->setName($name);
 		 $instance->setSurname($surname);
-		 $instance->setEmail($email);
-		 $instance->setPassword($password);
 		 $instance->setAddress($address);
 		 $instance->setCity($city);
 		 $instance->setPostalCode($postalCode);

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
@@ -27,13 +28,13 @@ class RegistrationController extends Controller
        $user = new User();
 
        $form = $this->createFormBuilder($user)
-           ->add('name', TextType::class, array('label' => 'Imię'))
-           ->add('surname', TextType::class, array('label' => 'Nazwisko'))
-           ->add('email', TextType::class, array('label' => 'E-mail'))
-           ->add('password', TextType::class, array('label' => 'Hasło'))
-           ->add('address', TextType::class, array('label' => 'Ulica i nr mieszkania'))
-           ->add('city', TextType::class, array('label' => 'Miasto'))
-           ->add('postalCode', TextType::class, array('label' => 'Kod pocztowy'))
+           ->add('name', TextType::class, array('label' => false))
+           ->add('surname', TextType::class, array('label' => false))
+           ->add('email', TextType::class, array('label' => false))
+           ->add('password', PasswordType::class, array('label' => false))
+           ->add('address', TextType::class, array('label' => false))
+           ->add('city', TextType::class, array('label' => false))
+           ->add('postalCode', TextType::class, array('label' => false))
            ->add('avatar', FileType::class, array('label' => 'Avatar', 'required' => false))
            ->add('save', SubmitType::class, array('label' => 'Zarejestruj'))
            ->getForm();
@@ -60,6 +61,10 @@ class RegistrationController extends Controller
                  } else {
                    $user->setAvatar('default.png');
                  }
+
+                 $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+                 $user->setPassword($encoder->encodePassword($user->getPassword(), $user->getSalt()));
+                 $user->setUsername($user->getEmail());
 
                  $em = $this->getDoctrine()->getManager();
                  $em->persist($user);

@@ -25,9 +25,11 @@ class DefaultController extends Controller
     public function aboutAction(Request $request)
     {
       $session = $request->getSession();
+      ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
       return $this->render('default/about.html.twig', array(
-        'name' => $session->get('name'))
+        'name' => $session->get('name'),
+        'cart' => $cart)
       );
 
     }
@@ -38,9 +40,11 @@ class DefaultController extends Controller
     public function contactAction(Request $request)
     {
       $session = $request->getSession();
+      ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
       return $this->render('default/contact.html.twig', array(
-        'name' => $session->get('name'))
+        'name' => $session->get('name'),
+        'cart' => $cart)
       );
 
     }
@@ -51,11 +55,13 @@ class DefaultController extends Controller
     public function helpAction(Request $request)
     {
       $session = $request->getSession();
+      ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
 
       return $this->render('default/help.html.twig', array(
-        'name' => $session->get('name'))
+        'name' => $session->get('name'),
+        'cart' => $cart)
       );
 
     }
-    
+
 }

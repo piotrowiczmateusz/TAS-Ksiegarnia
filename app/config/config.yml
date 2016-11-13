@@ -103,3 +103,8 @@ fos_rest:
         formats:
             json: true
             xml: false
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User

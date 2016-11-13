@@ -90,30 +90,30 @@ body, input{
 	margin: 0 30px;
 }
 
-#login-form input[type=text],
-#login-form input[type=password],
-#login-form input[type=email]{
-	width: 200px;
-	height: 39px;
-	margin-top: 13px;
-	margin-left: -5px;
-	padding-left: 10px;
-	background-color: #FFFFFF;
-	border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-	border: solid 1px #CBC9C9;
-	-webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
-	-moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
-	-webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-	-moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
-	box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+#add-book-form input[type="file"],
+#add-book-form label {
+	margin-left: 20px;
 }
 
 #registration-form input[type=text],
 #registration-form input[type=password],
-#registration-form input[type=email]{
-	width: 200px;
+#registration-form input[type=email],
+#registration-form select.form-control,
+#registration-form input[type=number],
+#add-book-form input[type=text],
+#add-book-form input[type=password],
+#add-book-form input[type=email],
+#add-book-form select.form-control,
+#add-book-form input[type=number],
+#login-form input[type=text],
+#login-form input[type=password],
+#login-form input[type=email],
+#login-form select.form-control,
+#login-form input[type=number] {
+	display: inline-block;
+	width: calc(100% - 70px);
 	height: 39px;
-	margin-top: 5px;
+	margin-top: 14px;
 	margin-left: -5px;
 	padding-left: 10px;
 	background-color: #FFFFFF;
@@ -126,10 +126,28 @@ body, input{
 	box-shadow: 1px 2px 5px rgba(0,0,0,.09);
 }
 
+#add-book-form textarea.form-control {
+	display: inline-block;
+	height: 100px;
+	width: calc(100% - 70px);
+	margin-top: 6px;
+	margin-left: -5px;
+	padding-left: 10px;
+	background-color: #FFFFFF;
+	border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+	border: solid 1px #CBC9C9;
+	-webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px;
+	-moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px;
+	-webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+	-moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+	box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+}
+
+
 #login-icon{
 	width: 40px;
 	margin-left: 15px;
-	padding: 8px 0px 8px 15px;
+	padding: 11px 0px 11px 15px;
 	background-color: #3A57AF;
 	border-radius: 4px 0px 0px 4px;
 	border: solid 0px #cbc9c9;

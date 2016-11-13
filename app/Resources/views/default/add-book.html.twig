@@ -7,10 +7,47 @@
     		<div class="row">
     			<div class="col-md-6">
     				<div class="panel panel-default">
-						  <div id="sign-up" class="tab-pane fade in active">
+						  <div id="add-book-form" class="tab-pane fade in active">
 						    <h3>Dodaj książkę</h3>
+
                 {{ form_start(form) }}
-                {{ form_widget(form) }}
+
+                <label id="login-icon" for="title"><i class="icon-book"></i></label>
+                {{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł...'} }) }}
+
+                <label id="login-icon" for="author"><i class="icon-user"></i></label>
+                {{ form_widget(form.author, {'attr': {'placeholder': 'Autor...'} }) }}
+
+                <label id="login-icon" for="description"><i class="icon-font"></i></label>
+                {{ form_widget(form.description, {'attr': {'placeholder': 'Opis...'} }) }}
+
+                <label id="login-icon" for="category"><i class="icon-list"></i></label>
+                {{ form_widget(form.category, {'attr': {'placeholder': 'Kategoria...'} }) }}
+
+                <label id="login-icon" for="publisher"><i class="icon-user"></i></label>
+                {{ form_widget(form.publisher, {'attr': {'placeholder': 'Wydawca...'} }) }}
+
+                {{ form_label(form.cover) }}
+                {{ form_widget(form.cover) }}
+
+                <label id="login-icon" for="date"><i class="icon-calendar"></i></label>
+                {{ form_widget(form.date, {'attr': {'placeholder': 'Data wydania...'} }) }}
+
+                {{ form_label(form.isNew) }}
+                {{ form_widget(form.isNew) }}
+
+                {{ form_label(form.isBestseller) }}
+                {{ form_widget(form.isBestseller) }}
+
+                {{ form_label(form.isDiscount) }}
+                {{ form_widget(form.isDiscount) }}
+
+                <label id="login-icon" for="price"><i class="fa fa-dollar"></i></label>
+                {{ form_widget(form.price, {'attr': {'placeholder': 'Cena...'} }) }}
+
+                <label id="login-icon" for="discountPrice"><i class="fa fa-dollar"></i></label>
+                {{ form_widget(form.discountPrice, {'attr': {'placeholder': 'Przecena...'} }) }}
+
                 {{ form_end(form) }}
 						  </div>
     				</div>
