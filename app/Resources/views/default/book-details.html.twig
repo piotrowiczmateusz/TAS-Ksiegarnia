@@ -3,62 +3,67 @@
 {% block body %}
 
 <div id="main">
+  {% include 'default/alert.html.twig' %}
   <div class="container">
     <div class="row">
     {% include 'default/sidebar.html.twig' %}
     	<div class="col-md-9">
-    		<div class="panel panel-default">
-        <hr class="style14">
-        <h2 class="headline-font text-center">{{book.title}}</h2>
-        <hr class="style14">
-        <div id="book-details" class="container">
-          <div class="row">
-            <div class="col-md-4">
-              <div id="book-details-img-box">
-                <img src="../uploads/covers/{{book.cover}}" class="img-responsive" alt="" />
+    		<div class="panel">
+        <div class="panel-header">
+            <h2><i class="fa fa-book"></i> {{book.title}}</h2>
+        </div>
+
+        <div class="panel-content">
+          <div id="book-details">
+            <div class="row">
+              <div class="col-md-4">
+                <div id="book-details-img-box">
+                  <img src="../uploads/covers/{{book.cover}}" class="img-responsive" alt="" />
+                </div>
               </div>
-            </div>
-            <div class="col-md-8">
-              <ul id="book-details-info" class="font-size-4 font-serif none-list-style">
-                <li><small>Liczba głosów: {{book.votes}}</small></li>
-                {% if book.votes == 0 %}
-                  Ocena: {{(book.rating) | round(2) }}
-                {% else %}
-                  Ocena: {{(book.rating / book.votes) | round(2) }}
-                {% endif %}
+              <div class="col-md-8">
+                <ul id="book-details-info" class="font-size-4 font-serif none-list-style">
+                  <li><small>Liczba głosów: {{book.votes}}</small></li>
+                  {% if book.votes == 0 %}
+                    Ocena: {{(book.rating) | round(2) }}
+                  {% else %}
+                    Ocena: {{(book.rating / book.votes) | round(2) }}
+                  {% endif %}
 
-                {{ form_start(form, {'multipart': true}) }}
-                {{ form_widget(form) |raw }}
-                {{ form_end(form) }}
+                  {{ form_start(form, {'multipart': true}) }}
+                  {{ form_widget(form) |raw }}
+                  {{ form_end(form) }}
 
-                <li><strong>Autor: </strong>{{book.author}}</li>
-                <li><strong>Kategoria: </strong>{{book.category}}</li>
-                <li><strong>Wydawnictwo: </strong>{{book.publisher}}</li>
-                <li><strong>Rok wydania: </strong>{{book.date}}</li>
-                <br>
-                <li class="font-size-5"><strong>Opis: </strong>{{book.description}}</li>
-                <br>
-
-                {% if book.isBestseller == true %}
-                  <li><strong>Ta książka jest bestsellerem!</strong></li>
-                {% endif %}
-
-                {% if book.isNew == true %}
-                  <li><strong>Ta książka to nowość!</strong></li>
-                {% endif %}
-
-                {% if book.isDiscount == true %}
-                  <li>Cena: <span class="old-price">{{book.discountPrice}}</span> {{book.price}} zł</li>
-                {% else %}
+                  <li><strong>Autor: </strong>{{book.author}}</li>
+                  <li><strong>Kategoria: </strong>{{book.category}}</li>
+                  <li><strong>Wydawnictwo: </strong>{{book.publisher}}</li>
+                  <li><strong>Rok wydania: </strong>{{book.date}}</li>
                   <br>
-                  <li><strong>Cena: {{book.price}} zł</strong></li>
-                {% endif %}
+                  <li class="font-size-5"><strong>Opis: </strong>{{book.description}}</li>
+                  <br>
 
-                <a id="add-book-to-cart" href="/add-to-cart?id={{book.id}}"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
-              </ul>
+                  {% if book.isBestseller == true %}
+                    <li><strong>Ta książka jest bestsellerem!</strong></li>
+                  {% endif %}
+
+                  {% if book.isNew == true %}
+                    <li><strong>Ta książka to nowość!</strong></li>
+                  {% endif %}
+
+                  {% if book.isDiscount == true %}
+                    <li>Cena: <span class="old-price">{{book.discountPrice}}</span> {{book.price}} zł</li>
+                  {% else %}
+                    <br>
+                    <li><strong>Cena: {{book.price}} zł</strong></li>
+                  {% endif %}
+
+                  <a href="/add-to-cart?id={{book.id}}" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
+        
         </div>
     	</div>
     </div>

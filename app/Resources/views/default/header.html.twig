@@ -1,10 +1,10 @@
 {% block body %}
-<header>
+<header id="header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 left">
-				<span><img id="logo" src="..\uploads\logo.png" /></span>
-				<a href="/" class="text-bold font-serif font-size-3 color-action single-space">Księgarnia</a>
+				<img id="logo" src="..\uploads\logo.png" />
+				<a href="/"><h1>Księgarnia</h1></a>
 			</div>
 			<div class="col-md-8 right">
 				<nav  id="header-nav">
@@ -13,7 +13,7 @@
 					{% if name is defined and name is not empty %}
 					<li class="dropdown">
 						<i class="fa fa-user"></i>
-						<a id="my-account" href="#" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">Moje konto</a>
+						<a id="my-account" href="#" class="font-size-4">Moje konto</a>
 						<div class="dropdown-content">
 							<a href="/add-book">Dodaj książkę</a>
 							<a href="/my-account">Moje dane</a>
@@ -23,7 +23,7 @@
 
 					<li>
 						<i class="fa fa-shopping-cart double-space"></i>
-						<a href="/cart" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">
+						<a href="/cart" class="font-size-4">
 							Koszyk
 							<span class="cart-length">
 								{% if cart is defined%}
@@ -57,5 +57,5 @@
 		</div>
 	</div>
 </header>
-{% include 'default/alert.html.twig' %}
+
 {% endblock %}

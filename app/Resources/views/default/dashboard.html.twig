@@ -36,62 +36,44 @@ $(function() {
 </script>
 
     <div id="main">
+      {% include 'default/search.html.twig' %}
+      {% include 'default/alert.html.twig' %}
     	<div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div id="search-container">
-              Szukaj wg:
-              <select id="searchBy">
-                <option>Tytuł</option>
-                <option>Autor</option>
-              </select>
-              <input id="search" class="form-control" type="text" autocomplete="off" placeholder="Szukaj książki..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Szukaj książki...'">
-              <div id="result"></div>
-            </div>
-          </div>
-        </div>
         <div class="row">
           {% include 'default/sidebar.html.twig' %}
           <div class="col-md-9">
-            {% if name is defined and name is not empty %}
             <div class="row">
               <div class="col-md-12">
-                <div id="hello-panel" class="panel panel-default">
-                  <hr class="style14">
-                  <div class="headline-font text-center"> Witaj, <strong>{{name}}</strong></div>
-                  <hr class="style14">
-                </div>
-              </div>
-            </div>
-            {% endif %}
-            <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-default">
-                  <hr class="style14">
-                  <h2 class="headline-font text-center">Bestsellery</h2>
-                  <hr class="style14">
-                  <div class="row">
-                    <section class="regular">
-                    {% for book in bestsellers %}
-                      {% include 'default/book-preview.html.twig' %}
-                    {% endfor %}
-                    </section>
+                <div class="panel">
+                  <div class="panel-header">
+                    <h2><i class="fa fa-star"></i> Bestsellery</h2>
+                  </div>
+                  <div class="panel-content">
+                    <div class="row">
+                      <section class="regular">
+                      {% for book in bestsellers %}
+                        {% include 'default/book-preview.html.twig' %}
+                      {% endfor %}
+                      </section>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <div class="panel panel-default">
-                  <hr class="style14">
-                  <h2 class="headline-font text-center">Nowości</h2>
-                  <hr class="style14">
-                  <div class="row">
-                    <section class="regular">
-                    {% for book in novelties %}
-                      {% include 'default/book-preview.html.twig' %}
-                    {% endfor %}
-                    </section>
+                <div class="panel">
+                  <div class="panel-header">
+                    <h2><i class="fa fa-exclamation"></i> Nowości</h2>
+                  </div>
+                  <div class="panel-content">
+                    <div class="row">
+                      <section class="regular">
+                      {% for book in novelties %}
+                        {% include 'default/book-preview.html.twig' %}
+                      {% endfor %}
+                      </section>
+                    </div>
                   </div>
                 </div>
               </div>

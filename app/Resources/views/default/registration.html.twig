@@ -2,44 +2,52 @@
 
 {% block body %}
 
-<div id="registration-form">
-	<div class="container reg-form-position">
+<div id="bg">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-centered">
-				<div class="registration-box">
-					<h2>Rejestracja</h2>
-					{{form_start(form)}}
-
-						<label id="login-icon" for="name"><i class="icon-user"></i></label>
-						{{ form_widget(form.name, {'attr': {'placeholder': 'Imię'} }) }}
-
-						<label id="login-icon" for="surname"><i class="icon-user"></i></label>
-						{{ form_widget(form.surname, {'attr': {'placeholder': 'Nazwisko'} }) }}
-
-						<label id="login-icon" for="email"><i class="icon-envelope"></i></label>
-						{{ form_widget(form.email, {'attr': {'placeholder': 'E-mail'} }) }}
-
-						<label id="login-icon" for="password"><i class="icon-shield"></i></label>
-						{{ form_widget(form.password, {'attr': {'placeholder': 'Hasło'} }) }}
-
-						<label id="login-icon" for="address"><i class="icon-info"></i></label>
-						{{ form_widget(form.address, {'attr': {'placeholder': 'Ulica i nr mieszkania'} }) }}
-
-						<label id="login-icon" for="city"><i class="icon-info"></i></label>
-						{{ form_widget(form.city, {'attr': {'placeholder': 'Miasto'} }) }}
-
-						<label id="login-icon" for="postalCode"><i class="icon-info"></i></label>
-						{{ form_widget(form.postalCode, {'attr': {'placeholder': 'Kod pocztowy'} }) }}
-
-						{{ form_label(form.avatar) }}
-						{{ form_widget(form.avatar) }}
-
-						{{ form_widget(form.save) }}
-
-					{{form_end(form)}}
-					<div class="goto-login">
-						<a href="/login-form">Masz już konto? Zaloguj się!</a>
+			<div class="col-md-4">
+				<div class="panel">
+					<div class="panel-header">
+						<h2><i class="fa fa-user"></i> Rejestracja</h2>
 					</div>
+					<div class="panel-content">
+						{{form_start(form)}}
+
+							<label id="login-icon" for="name"><i class="icon-user"></i></label>
+							{{ form_widget(form.name, {'attr': {'placeholder': 'Imię'} }) }}
+
+							<label id="login-icon" for="surname"><i class="icon-user"></i></label>
+							{{ form_widget(form.surname, {'attr': {'placeholder': 'Nazwisko'} }) }}
+
+							<label id="login-icon" for="email"><i class="icon-envelope"></i></label>
+							{{ form_widget(form.email, {'attr': {'placeholder': 'E-mail'} }) }}
+
+							<label id="login-icon" for="password"><i class="icon-shield"></i></label>
+							{{ form_widget(form.password, {'attr': {'placeholder': 'Hasło'} }) }}
+
+							<label id="login-icon" for="address"><i class="icon-info"></i></label>
+							{{ form_widget(form.address, {'attr': {'placeholder': 'Ulica i nr mieszkania'} }) }}
+
+							<label id="login-icon" for="city"><i class="icon-info"></i></label>
+							{{ form_widget(form.city, {'attr': {'placeholder': 'Miasto'} }) }}
+
+							<label id="login-icon" for="postalCode"><i class="icon-info"></i></label>
+							{{ form_widget(form.postalCode, {'attr': {'placeholder': 'Kod pocztowy'} }) }}
+
+							{{ form_label(form.avatar) }}
+							{{ form_widget(form.avatar) }}
+
+							{{ form_widget(form.save) }}
+
+						{{form_end(form)}}
+						<p>
+							Masz już konto? <a href="/login-form">Zaloguj się!</a>
+						</p>
+					</div>
+
+
+
+
 				</div>
 			</div>
 		</div>

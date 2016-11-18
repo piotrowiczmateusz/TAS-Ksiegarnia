@@ -2,58 +2,74 @@
 
 {% block body %}
 
-{% include 'default/header.html.twig' %}
+    {% include 'default/header.html.twig' %}
 
     <div id="main">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-md-12">
-    				<div class="panel panel-default">
-              <h2>Zamowienie:</h2>
-              <div class="row">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-12">
-                  <h4><a href="/login-form">Zaloguj się</a> lub wypełnij ponizszy formularz.</h4>
-                </div>            
-                <form action="/order/step2" method="POST">
-                  <div class="col-md-6">
-                    <h3>Dane kontaktowe:</h3>
-                    <div class="form-group">
-                      <label for="name">Imię:</label>
-                      <input type="text" name="name" class="form-control" id="name">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2><i class="fa fa-shopping-cart"></i> Zamowienie:</h2>
+                        </div>
+                        <div class="panel-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>
+                                        <a href="/login-form">Zaloguj się</a>
+                                        lub wypełnij ponizszy formularz.</h4>
+                                </div>
+                                <form action="/order/step2" method="POST">
+
+
+                                        <div class="col-md-6">
+                                            <h3>Dane kontaktowe:</h3>
+                                            <div class="form-group">
+                                                <label for="name">Imię:</label><br>
+                                                <input type="text" name="name" class="form-control" id="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="surname">Nazwisko:</label><br>
+                                                <input type="text" name="surname" class="form-control" id="surname">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label><br><br>
+                                                <input type="text" name="email" class="form-control" id="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h3>Adres dostawy:
+                                            </h3>
+                                            <div class="form-group">
+                                                <label for="address">Ulica i nr mieszkania:</label><br>
+                                                <input type="text" name="address" class="form-control" id="address">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="city">Miasto:</label><br>
+                                                <input type="text" name="city" class="form-control" id="city">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="postalCode">Kod pocztowy:</label><br>
+                                                <input type="text" name="postalCode" class="form-control" id="postalCode">
+                                            </div>
+                                        </div>
+</div>  </div>
+                                        <div class="panel-footer">
+
+                                            <button type="submit" class="btn btn-default">
+                                                <i class="fa fa-arrow-right"></i>
+                                                Dalej</button>
+
+                                        </div>
+                                </form>
+
+
+
+
                     </div>
-                    <div class="form-group">
-                      <label for="surname">Nazwisko:</label>
-                      <input type="text" name="surname" class="form-control" id="surname">
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email:</label>
-                      <input type="text" name="email" class="form-control" id="email">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <h3>Adres dostawy: </h3>
-                    <div class="form-group">
-                      <label for="address">Ulica i nr mieszkania:</label>
-                      <input type="text" name="address" class="form-control" id="address">
-                    </div>
-                    <div class="form-group">
-                      <label for="city">Miasto:</label>
-                      <input type="text" name="city" class="form-control" id="city">
-                    </div>
-                    <div class="form-group">
-                      <label for="postalCode">Kod pocztowy:</label>
-                      <input type="text" name="postalCode" class="form-control" id="postalCode">
-                    </div>
-                  </div>
-                  <div class="col-md-12 right">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-arrow-right"></i> Dalej</button>
-                  </div>
-                </form>
-              </div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+                </div>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

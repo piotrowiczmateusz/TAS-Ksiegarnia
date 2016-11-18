@@ -3,42 +3,58 @@
 {% block body %}
 
     <div id="main">
+      {% include 'default/alert.html.twig' %}
     	<div class="container">
     		<div class="row">
     			<div class="col-md-6">
-    				<div class="panel panel-default">
-              <h2>Moje dane:</h2>
-						  <ul>
-                <img src="../uploads/avatars/{{user.avatar}}" alt="" width="200" height="200" />
-						    <li>Imię: {{user.name}}</li>
-                <li>Nazwisko: {{user.surname}}</li>
-                <li>E-mail: {{user.email}}</li>
-                <li>Ulica i nr mieszkania: {{user.address}}</li>
-                <li>Miasto: {{user.city}}</li>
-                <li>Kod pocztowy: {{user.postalCode}}</li>
-						  </ul>
-              <button class="btn btn-default" data-toggle="modal" data-target="#edit-form">
-                <i class="fa fa-gear"></i> Edytuj dane
-              </button>
+    				<div class="panel">
+              <div class="panel-header">
+                <h2><i class="fa fa-user"></i> Moje dane:</h2>
+              </div>
+              <div class="panel-content">
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="../uploads/avatars/{{user.avatar}}" alt="" width="200" height="200" />
+                  </div>
+                  <div class="col-md-6">
+                    <ul>
+      						    <li>Imię: <strong>{{user.name}}</strong></li>
+                      <li>Nazwisko: <strong>{{user.surname}}</strong></li>
+                      <li>E-mail: <strong>{{user.email}}</strong></li>
+                      <li>Ulica i nr mieszkania: <strong></strong></li>
+                      <li>Miasto: <strong>{{user.city}}</strong></li>
+                      <li>Kod pocztowy: <strong>{{user.postalCode}}</strong></li>
+      						  </ul>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#edit-form">
+                      <i class="fa fa-gear"></i> Edytuj dane
+                    </button>
+                  </div>
+                </div>
+              </div>
     				</div>
     			</div>
           <div class="col-md-6">
-    				<div class="panel panel-default">
-						  <h2>Historia zamówień:</h2>
-              {% if orders is empty %}
-                <p>Brak zamówień.</p>
-              {% else %}
-              <ul>
-                {% for o in orders %}
-						    <li>
-                  <ul>
-                    <li>Data zamówienia: {{o.orderDate|date('Y-m-d H:i:s')}}</li>
-                    <li>Id zamówienia: <a href="/order-details?id={{o.id}}">{{o.id}}</a></li>
-                  </ul>
-                </li>
-                {% endfor %}
-              </ul>
-              {% endif %}
+    				<div class="panel">
+              <div class="panel-header">
+                <h2>Historia zamówień:</h2>
+              </div>
+						  <div class="panel-content">
+                {% if orders is empty %}
+                  <p>Brak zamówień.</p>
+                {% else %}
+                  {% for o in orders %}
+                  <div class="order">
+                    <ul>
+                      <li>Data zamówienia: <strong>{{o.orderDate|date('Y-m-d H:i:s')}}</strong> </li>
+                      <li>Id zamówienia: <strong>{{o.id}}</strong></li>
+                      <a href="/order-details?id={{o.id}}" class="btn btn-default">
+                        <i class="fa fa-info-circle"></i> Szczegoly
+                      </a>
+                    </ul>
+                  </div>
+                  {% endfor %}
+                {% endif %}
+						  </div>
     				</div>
     			</div>
     		</div>

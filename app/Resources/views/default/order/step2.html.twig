@@ -8,44 +8,51 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-md-12">
-    				<div class="panel panel-default">
-              <h2>Sprawdz poprawność danych:</h2>
-              <div class="row">
-                <div class="col-md-4">
-                  <h3>Zamawiane produkty:</h3>
-                  {% for book in cart %}
-                      <ul>
-                        <li>Tytuł: {{book.title}}</li>
-                        <li>Autor: {{book.author}}</li>
-                        <li>Cena: {{book.price}} zł</li>
-                      </ul>
-                  {% endfor %}
-                </div>
-                <div class="col-md-4">
-                  <h3>Dane kontaktowe:</h3>
-                  <ul>
-                    <li>Imie: {{user.name}}</li>
-                    <li>Nazwisko: {{user.surname}}</li>
-                    <li>E-mail: {{user.email}}</li>
-                  </ul>
-                </div>
-                <div class="col-md-4">
-                  <h3>Adres dostawy: </h3>
-                  <ul>
-                    <li>Ulica i nr mieszkania: {{user.address}} </li>
-                    <li>Miasto: {{user.city}} </li>
-                    <li>Kod pocztowy: {{user.postalCode}} </li>
-                  </ul>
+    				<div class="panel">
+              <div class="panel-header">
+                <h2><i class="fa fa-shopping-cart"></i> Sprawdz poprawność danych:</h2>
+              </div>
+              <div class="panel-content">
+                <div class="row">
+                  <div class="col-md-4">
+                    <h3>Zamawiane produkty:</h3>
+                    {% for book in cart %}
+                        <ul>
+                          <li>Tytuł: {{book.title}}</li>
+                          <li>Autor: {{book.author}}</li>
+                          <li>Cena: {{book.price}} zł</li>
+                        </ul>
+                    {% endfor %}
+                  </div>
+                  <div class="col-md-4">
+                    <h3>Dane kontaktowe:</h3>
+                    <ul>
+                      <li>Imie: {{user.name}}</li>
+                      <li>Nazwisko: {{user.surname}}</li>
+                      <li>E-mail: {{user.email}}</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h3>Adres dostawy: </h3>
+                    <ul>
+                      <li>Ulica i nr mieszkania: {{user.address}} </li>
+                      <li>Miasto: {{user.city}} </li>
+                      <li>Kod pocztowy: {{user.postalCode}} </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-6 left">
-                  <a href="/order" class="btn btn-default"><i class="fa fa-arrow-left"></i> Powrót</a><br>
-                </div>
-                <div class="col-md-6 right">
-                  <a href="/order/final" class="btn btn-default"><i class="fa fa-check"></i> Zloz zamowienie</a>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-6 left">
+                    <a href="/order" class="btn btn-default"><i class="fa fa-arrow-left"></i> Powrót</a><br>
+                  </div>
+                  <div class="col-md-6 right">
+                    <a href="/order/final" class="btn btn-default"><i class="fa fa-check"></i> Zloz zamowienie</a>
+                  </div>
                 </div>
               </div>
+
     				</div>
     			</div>
     		</div>

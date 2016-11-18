@@ -2,36 +2,44 @@
 
 {% block body %}
 
-	<div id="login-form">
+	<div id="bg">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 col-centered">
-					<div class="login-box">
-						<h2>Logowanie</h2>
+				<div class="col-md-4">
+					<div class="panel">
+						<div class="panel-header">
+							<h2><i class="fa fa-user"></i> Logowanie</h2>
+						</div>
+						<div class="panel-content">
+							{{form_start(form)}}
 
-						{{form_start(form)}}
+								<label id="login-icon" for="password"><i class="icon-user"></i></label>
+								{{ form_widget(form.email, {'attr': {'placeholder': 'E-mail'} }) }}
 
-							<label id="login-icon" for="password"><i class="icon-user"></i></label>
-							{{ form_widget(form.email, {'attr': {'placeholder': 'E-mail'} }) }}
+								<label id="login-icon" for="password"><i class="icon-shield"></i></label>
+								{{ form_widget(form.password, {'attr': {'placeholder': 'Hasło'} }) }}
 
-							<label id="login-icon" for="password"><i class="icon-shield"></i></label>
-							{{ form_widget(form.password, {'attr': {'placeholder': 'Hasło'} }) }}
+								{{ form_widget(form.save) }}
 
-							{{ form_widget(form.save) }}
+							{{form_end(form)}}
 
-						{{form_end(form)}}
+										<p>
+											Nie masz jeszcze konta? <a href="/registration">Zarejestruj się!</a>
+										</p>
 
-						<div class="goto-registration">
-							Nie masz jeszcze konta? <a href="/registration">Zarejestruj się!</a>
 						</div>
 					</div>
-					<div class="remind-pass-box">
-						<h2>Odzyskiwanie hasła</h2>
-						<form action="/restore-password" method="POST">
-							<label id="login-icon" for="email"><i class="icon-envelope "></i></label>
-							<input type="email" name="email" id="email" placeholder="Email" required/>
-							<input type="submit" name="name" value="Odzyskaj hasło" class="btn">
-						</form>
+					<div class="panel">
+						<div class="panel-header">
+							<h2><i class="fa fa-question"></i> Odzyskiwanie hasła</h2>
+						</div>
+						<div class="panel-content">
+							<form action="/restore-password" method="POST">
+								<label id="login-icon" for="email"><i class="icon-envelope "></i></label>
+								<input type="email" name="email" id="email" placeholder="Email" required/>
+								<input type="submit" name="name" value="Odzyskaj hasło" class="btn">
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
