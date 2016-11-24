@@ -2,6 +2,38 @@
 
 {% block body %}
 
+<script language="javascript">
+$(function(){
+
+  $('.star').bind('click', function(e)
+    {
+        var userID = '{{user}}';
+        if(userID!=""){
+          var request = $.ajax({
+              url: "/addrating",
+              type: 'GET',
+              data: {
+                  rating: $(this).attr("data-value"),
+                  id: '{{book.id}}',
+                  userID: userID
+              },
+              success: function(html)
+              {
+                $('#ratingAlert').css("display","block").css('background-color', 'rgba(44, 128, 44, 0.86)');
+                document.getElementById('ratingAlert').innerHTML = "Twoja ocena została dodana.";
+              }
+            });
+            e.preventDefault();
+        }
+        else {
+          $('#ratingAlert').css("display","block").css('background-color', 'rgba(128,44,44,0.86)');
+          document.getElementById('ratingAlert').innerHTML = "Zaloguj się aby dodać ocene do tej książki.";
+        }
+      });
+  });
+
+</script>
+
 <div id="main">
   {% include 'default/alert.html.twig' %}
   <div class="container">
@@ -16,6 +48,7 @@
         <div class="panel-content">
           <div id="book-details">
             <div class="row">
+              <div id="ratingAlert" style="display: none;margin: 15px 38px;padding: 15px;color: whitesmoke;border-radius:4px;">A</div>
               <div class="col-md-4">
                 <div id="book-details-img-box">
                   <img src="../uploads/covers/{{book.cover}}" class="img-responsive" alt="" />
@@ -63,7 +96,7 @@
             </div>
           </div>
         </div>
-        
+
         </div>
     	</div>
     </div>

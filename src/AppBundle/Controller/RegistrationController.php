@@ -65,6 +65,7 @@ class RegistrationController extends Controller
                  $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
                  $user->setPassword($encoder->encodePassword($user->getPassword(), $user->getSalt()));
                  $user->setUsername($user->getEmail());
+                 $user->setRatedBooks(",");
 
                  $em = $this->getDoctrine()->getManager();
                  $em->persist($user);

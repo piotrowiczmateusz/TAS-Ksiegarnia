@@ -51,12 +51,16 @@ class User extends BaseUser
      */
 		private $avatar;
 
+		/**
+     * @ORM\Column(type="string")
+     */
+		private $ratedBooks;
 
     public function __construct() {
 			parent::__construct();
    }
 
-	 public function create($name, $surname, $address, $city, $postalCode, $avatar) {
+	 public function create($name, $surname, $address, $city, $postalCode, $avatar, $ratedBooks) {
 		 $instance = new self();
 		 $instance->setName($name);
 		 $instance->setSurname($surname);
@@ -64,6 +68,8 @@ class User extends BaseUser
 		 $instance->setCity($city);
 		 $instance->setPostalCode($postalCode);
 		 $instance->setAvatar($avatar);
+		 $instance->setRatedBooks($ratedBooks);
+
 		 return $instance;
 	 }
 
@@ -268,5 +274,29 @@ class User extends BaseUser
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * Set ratedBooks
+     *
+     * @param string $ratedBooks
+     *
+     * @return User
+     */
+    public function setRatedBooks($ratedBooks)
+    {
+        $this->ratedBooks = $ratedBooks;
+
+        return $this;
+    }
+
+    /**
+     * Get ratedBooks
+     *
+     * @return string
+     */
+    public function getRatedBooks()
+    {
+        return $this->ratedBooks;
     }
 }

@@ -16,6 +16,7 @@ use AppBundle\Entity\Book;
 
 class BookDetailsController extends Controller
 {
+
     /**
      * @Route("/books/{id}")
      */
@@ -41,7 +42,6 @@ class BookDetailsController extends Controller
             'data' => strval($rating/$votes)
           ])
           ->add('cover', FileType::class, array('label' => false, 'data_class' => null, 'required' => false, 'attr'=>array('style'=>'display:none;')))
-          ->add('rate', SubmitType::class, array('label' => 'Dodaj ocenę'))
           ->getForm();
 
           $form->handleRequest($request);
@@ -62,6 +62,7 @@ class BookDetailsController extends Controller
         'cart' => $cart,
         'categories' => $categories,
         'book' => $book,
+        'user' => $session->get('id'),
         'form' => $form->createView())
       );
 
