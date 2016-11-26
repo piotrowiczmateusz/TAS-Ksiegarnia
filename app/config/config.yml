@@ -7,6 +7,8 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    covers_directory: '%kernel.root_dir%/../web/uploads/covers'
+    avatars_directory: '%kernel.root_dir%/../web/uploads/avatars'
 
 framework:
     #esi:             ~
@@ -36,6 +38,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        - bootstrap_3_layout.html.twig
 
 # Doctrine Configuration
 doctrine:
@@ -64,8 +68,43 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
+    transport: gmail
+    host:      smtp.gmail.com
+    username:  ksiegarniatas@gmail.com
+    password:  ABC123456
     spool:     { type: memory }
+
+jms_serializer:
+    visitors:
+        json:
+            options: JSON_PRETTY_PRINT
+
+# Nelmio CORS Configuration
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: ['*']
+        allow_headers: ['*']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        max_age: 3600
+        hosts: []
+        origin_regex: false
+
+# FOSRest Configuration
+fos_rest:
+    body_listener: true
+    format_listener:
+        rules:
+            - { path: '^/api/', priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', priorities: ['html'], fallback_format: html, prefer_extension: false }
+    param_fetcher_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            json: true
+            xml: false
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User

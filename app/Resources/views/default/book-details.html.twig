@@ -2,26 +2,103 @@
 
 {% block body %}
 
-{% include 'default/header.html.twig' %}
+<script language="javascript">
+$(function(){
 
-    <div id="main">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-md-6">
-    				<div class="panel panel-default">
-						  <ul>
-                {% for b in books %}
-						    <li>Tytuł: {{b.title}}</li>
-                <li>Autor: {{b.author}}</li>
-                <li>Opis: {{b.description}}</li>
-                <li>Kategoria: {{b.category}}</li>
-                <li>Wydawnictwo: {{b.publisher}}</li>
-                {% endfor %}
-						  </ul>
-    				</div>
-    			</div>
-    		</div>
+  $('.star').bind('click', function(e)
+    {
+        var userID = '{{user}}';
+        if(userID!=""){
+          var request = $.ajax({
+              url: "/addrating",
+              type: 'GET',
+              data: {
+                  rating: $(this).attr("data-value"),
+                  id: '{{book.id}}',
+                  userID: userID
+              },
+              success: function(html)
+              {
+                $('#ratingAlert').css("display","block").css('background-color', 'rgba(44, 128, 44, 0.86)').empty().append("Twoja ocena została dodana.");
+              }
+            });
+            e.preventDefault();
+        }
+        else {
+          $('#ratingAlert').css("display","block").css('background-color', 'rgba(128,44,44,0.86)').empty().append("Zaloguj się aby dodać ocene do tej książki.");
+        }
+      });
+  });
+
+</script>
+
+<div id="main">
+  {% include 'default/alert.html.twig' %}
+  <div class="container">
+    <div class="row">
+    {% include 'default/sidebar.html.twig' %}
+    	<div class="col-md-9">
+    		<div class="panel">
+        <div class="panel-header">
+            <h2><i class="fa fa-book"></i> {{book.title}}</h2>
+        </div>
+
+        <div class="panel-content">
+          <div id="book-details">
+            <div class="row">
+              <div id="ratingAlert" style="display: none;margin: 15px 38px;padding: 15px;color: whitesmoke;border-radius:4px;"></div>
+              <div class="col-md-4">
+                <div id="book-details-img-box">
+                  <img src="../uploads/covers/{{book.cover}}" class="img-responsive" alt="" />
+                </div>
+              </div>
+              <div class="col-md-8">
+                <ul id="book-details-info" class="font-size-4 font-serif none-list-style">
+                  <li><small>Liczba głosów: {{book.votes}}</small></li>
+                  {% if book.votes == 0 %}
+                    Ocena: {{(book.rating) | round(2) }}
+                  {% else %}
+                    Ocena: {{(book.rating / book.votes) | round(2) }}
+                  {% endif %}
+
+                  {{ form_start(form, {'multipart': true}) }}
+                  {{ form_widget(form) |raw }}
+                  {{ form_end(form) }}
+
+                  <li><strong>Autor: </strong>{{book.author}}</li>
+                  <li><strong>Kategoria: </strong>{{book.category}}</li>
+                  <li><strong>Wydawnictwo: </strong>{{book.publisher}}</li>
+                  <li><strong>Rok wydania: </strong>{{book.date}}</li>
+                  <br>
+                  <li class="font-size-5"><strong>Opis: </strong>{{book.description}}</li>
+                  <br>
+
+                  {% if book.isBestseller == true %}
+                    <li><strong>Ta książka jest bestsellerem!</strong></li>
+                  {% endif %}
+
+                  {% if book.isNew == true %}
+                    <li><strong>Ta książka to nowość!</strong></li>
+                  {% endif %}
+
+                  {% if book.isDiscount == true %}
+                    <li>Cena: <span class="old-price">{{book.discountPrice}}</span> {{book.price}} zł</li>
+                  {% else %}
+                    <br>
+                    <li><strong>Cena: {{book.price}} zł</strong></li>
+                  {% endif %}
+
+                  <a href="/add-to-cart?id={{book.id}}" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Dodaj do koszyka</a>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
     	</div>
     </div>
+  </div>
+</div>
 
 {% endblock %}

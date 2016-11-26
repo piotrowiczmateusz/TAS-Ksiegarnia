@@ -1,36 +1,438 @@
-#main{
-  margin-top: 110px;
-}
+/*
+  COLORS:
+    darkGray: #222;
+    darkerGray: #818181;
+    lightGray: #f5f5f5;
+    white: #fff;
+    blue: #3a57af;
+    yellow: #fff8b1;
+*/
+
+
+/* --------------------------------------
+----------------GENERAL------------------
+---------------------------------------*/
 
 * {
-  margin: 0;
-  padding: 0; }
-
-.left {
-  float: left;
-text-align: left;}
-
-.right {
-  float: right; text-align: right;}
-
-.navbar h1 {
-  text-align: center;
-  margin-bottom: 20px; }
-
-.tab-pane,
-.panel {
-  padding: 15px;
+    margin: 0;
+    padding: 0;
 }
 
-/* -------------------------------
-   NAVIGATION
----------------------------------- */
-/* -------------------------------
-   CONTENT
----------------------------------- */
-/* -------------------------------
-   SIDEBAR
----------------------------------- */
-/* -------------------------------
-   BOTTOM
----------------------------------- */
+body {
+    background: #f5f5f5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+button {
+    border: none;
+}
+
+ul {
+    padding: 0;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.left {
+    text-align: left;
+    float: left;
+}
+
+.right {
+    text-align: right;
+    float: right;
+}
+
+.alert {
+    margin-bottom: 0;
+}
+
+#flash {
+    margin-top: 40px;
+    height: 0;
+}
+
+#main {
+    background: #f5f5f5;
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 60px;
+    padding-bottom: 40px;
+    min-height: calc(100vh - 140px);
+}
+
+.panel {
+    background: #fff;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    -webkit-box-shadow: 1px 1px 3px 1px #9f9f9f;
+    box-shadow: 1px 1px 3px 1px #9f9f9f;
+    margin-top: 40px;
+}
+
+.panel-header {
+    background: #222;
+    color: #f5f5f5;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    padding: 0 15px;
+    text-align: left;
+}
+
+.panel-header h2 {
+    margin: 0 auto;
+    line-height: 50px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.panel-content {
+    padding: 15px;
+}
+
+.panel-footer {
+    margin: 0;
+    margin-top: 25px;
+    border-top: 1px solid #9f9f9f;
+    background: #f5f5f5;
+    padding: 15px;
+}
+
+.btn {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    width: 95%;
+    max-width: 180px;
+    height: 27px;
+    padding: 6px 25px 0px 20px;
+    position: relative;
+    background-color: #3A57AF;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    box-shadow: 0 3px rgba(58, 87, 175, .75);
+    transition: all 0.1s linear 0s;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active {
+    color: #fff;
+    border-color: transparent;
+    background-color: #2E458B;
+    -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    box-shadow: 0 3px rgba(58, 87, 175, .75);
+}
+
+.btn:hover, .btn:focus, .btn:active {
+    background-color: #2E458B;
+    -webkit-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    -moz-box-shadow: 0 3px rgba(58, 87, 175, .75);
+    box-shadow: 0 3px rgba(58, 87, 175, .75);
+}
+
+.font-size-3 {
+    font-size: 25px;
+}
+
+.font-size-4 {
+    font-size: 16px;
+}
+
+.small-space {
+    margin-left: 3px;
+}
+
+.single-space {
+    margin-left: 10px;
+}
+
+.double-space {
+    margin-left: 20px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.small-space2 {
+    margin-right: 3px;
+}
+
+.font-size-5 {
+    font-size: 13px;
+}
+
+.font-size-6 {
+    font-size: 11px;
+}
+
+a {
+    color: #222;
+}
+
+a:hover, a:active, a:focus {
+    text-decoration: none;
+}
+
+.modal label {
+    display: block;
+}
+
+
+/*--------------------------------------
+-------SEARCH--------
+--------------------------------------*/
+
+#search-container {
+    height: 200px;
+    background: url('../uploads/bg.jpg');
+    background-position: left;
+    border-bottom: 3px solid #222;
+    margin-top: 60px;
+}
+
+#search, #searchBy {
+    border-radius: 0;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    width: 100%;
+    margin-top: 75px;
+}
+
+#result {
+    border-left: 1px solid #b6b6b6;
+    border-right: 1px solid #b6b6b6;
+}
+
+.search-book {
+    background: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #b6b6b6;
+}
+
+
+/* --------------------------------------
+----------------SIDEBAR------------------
+---------------------------------------*/
+
+#categories {
+    padding: 0;
+}
+
+#categories ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#categories ul li a {
+    color: #222;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    width: 100%;
+    padding: 0 15px;
+    display: block;
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -ms-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+
+#categories ul li a:hover {
+    background: #f5f5f5;
+}
+
+
+/* --------------------------------------
+----------------BOOK------------------
+---------------------------------------*/
+
+.book {
+    background: #f5f5f5;
+    padding: 15px;
+    -webkit-box-shadow: 1px 1px 3px 1px #9f9f9f;
+    box-shadow: 1px 1px 3px 1px #9f9f9f;
+    margin: 20px 0;
+}
+
+.book-cover-box {
+    width: 100%;
+    height: 220px;
+    padding-top: 2px;
+}
+
+.book-cover-box img {
+    height: 100%;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid #222;
+}
+
+.overlay {
+    display: block;
+    height: 220px;
+    width: 150px;
+    background: rgba(34, 34, 34, 0.7);
+    color: #fff;
+    position: absolute;
+    z-index: 9999;
+    opacity: 0;
+    text-align: center;
+    line-height: 220px;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -ms-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+
+.overlay a {
+    color: #000;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: red;
+}
+
+.book-cover-box:hover .overlay {
+    opacity: 1;
+}
+
+.book-info-box {
+    width: 100%;
+    height: 90px;
+    margin-top: 5px;
+}
+
+.book-info-box ul {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 2px;
+    text-align: center;
+    position: relative;
+    list-style-type: none;
+}
+
+.book-submit-box {
+    width: 100%;
+    min-height: 40px;
+    bottom: 0px;
+    text-align: center;
+}
+
+#book-price {
+    padding-top: 5px;
+}
+
+#book-details {
+    padding: 5px 15px 15px 15px;
+}
+
+#book-details-img-box {
+    width: 100%;
+    height: 300px;
+    margin-top: 15px;
+}
+
+#book-details-img-box> img {
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid #000;
+}
+
+#book-details-info {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.book-logo {
+    width: 50px;
+    height: 70px;
+}
+
+.submit-order-box {
+    margin: 15px;
+    padding: 5px 20px 5px 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.submit-order-box> a {
+    margin: 5px;
+}
+
+
+/*--------------------------------------
+-------CART--------
+--------------------------------------*/
+
+.order {
+    background: #f5f5f5;
+    margin: 15px 0;
+    padding: 15px;
+    -webkit-box-shadow: 1px 1px 3px 1px #9f9f9f;
+    box-shadow: 1px 1px 3px 1px #9f9f9f;
+}
+
+
+/*--------------------------------------
+-------RESPONSIVE--------
+--------------------------------------*/
+
+@media (max-width: 768px) {
+    .left, .right {
+        float: none;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+        color: #fff;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+        text-align: center;
+    }
+    .sidebar-nav .navbar ul:not {
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}

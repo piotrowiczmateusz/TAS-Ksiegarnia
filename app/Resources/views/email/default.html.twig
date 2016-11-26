@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+      <title>{% block title %}TAS Projekt{% endblock %}</title>
+
+    </head>
+    <body>
+        {% block body %}
+        <div id="main">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Księgarnia TAS</h1>
+                <h3>Potwierdzenie zamówienia nr: {{order.id}}</h3>
+                <p>Data złożenia zamówienia: {{order.orderDate | date('Y-m-d H:i:s')}}</p>
+              </div>
+              <div class="col-md-4">
+                <h3>Zamawiane produkty:</h3>
+                  <ul>
+                      {% for book in books %}
+                        <li>
+                          <ul>
+                            <li>{{book.title}} - {{book.author}}</li>
+                            <li>Cena: {{book.price}} zł</li>
+                          </ul>
+                        </li>
+                      {% endfor %}
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                <h3>Dane kontaktowe:</h3>
+                <ul>
+                  <li>Imię: {{user.name}}</li>
+                  <li>Nazwisko: {{user.surname}}</li>
+                  <li>E-mail: {{user.email}}</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <h3>Adres dostawy: </h3>
+                <ul>
+                  <li>Ulica i nr mieszkania: {{user.address}} </li>
+                  <li>Miasto: {{user.city}} </li>
+                  <li>Kod pocztowy: {{user.postalCode}} </li>
+                </ul>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

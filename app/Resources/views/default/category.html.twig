@@ -2,26 +2,28 @@
 
 {% block body %}
 
-{% include 'default/header.html.twig' %}
-
     <div id="main">
+      {% include 'default/alert.html.twig' %}
     	<div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="panel panel-default">
-              <ul>
+          {% include 'default/sidebar.html.twig' %}
+          <div class="col-md-9">
+            <div class="panel">
+              <div class="panel-header">
+                <h2>Kategoria: {{category}}</h2>
+              </div>
+              <div class="panel-content">
                 <div class="row">
                   {% for book in books %}
                     {% include 'default/book-preview.html.twig' %}
                   {% endfor %}
                 </div>
-              </ul>
+              </div>
+              <ul class="pagination"></ul>
             </div>
           </div>
         </div>
     	</div>
     </div>
-
-    {% include 'default/footer.html.twig' %}
 
 {% endblock %}

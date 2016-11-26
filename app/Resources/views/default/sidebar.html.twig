@@ -1,0 +1,23 @@
+{% block body %}
+
+    <div class="col-md-3">
+        <div class="panel">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#categories">
+                <i class="fa fa-navicon"></i>
+            </button>
+            <div class="panel-header">
+                <h2><i class="fa fa-list"></i> KATEGORIE</h2>
+            </div>
+            <div id="categories" class="navbar-collapse collapse">
+                <ul>
+                    {% for category in categories %}
+                        <li>
+                            <a href="/categories/{{category.id}}">{{category.title|e}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

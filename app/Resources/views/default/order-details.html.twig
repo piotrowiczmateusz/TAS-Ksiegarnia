@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="main">
+      {% include 'default/alert.html.twig' %}
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="panel">
+              <div class="panel-header">
+                <h2>Szczegóły zamówienia:</h2>
+              </div>
+              <div class="panel-content">
+                <ul>
+  						    <li>Id zamówienia: {{order.id}}</li>
+                  <li>Data złożenia zamówienia: {{order.orderDate | date('Y-m-d H:i:s')}}</li>
+                  <li>Imię i nazwisko zamawiającego: {{user.name}} {{user.surname}}</li>
+                  {% for book in books %}
+                    <li>
+                      <ul>
+                        <li>{{book.title}} - {{book.author}}</li>
+                        <li>Cena: {{book.price}} zł</li>
+                      </ul>
+                    </li>
+                  {% endfor %}
+  						  </ul>
+              </div>
+              <div class="panel-footer">
+                <a href="/my-account" class="btn btn-default">
+                  <i class="fa fa-chevron-left"></i> Powrot</a>
+              </div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+{% endblock %}

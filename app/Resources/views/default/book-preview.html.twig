@@ -1,19 +1,40 @@
-{% extends 'base.html.twig' %}
-
 {% block body %}
 
-{% include 'default/header.html.twig' %}
+  <div class="col-md-4 col-sm-6">
+    <div class="book">
+        <div class="book-cover-box">
+          <a href="/books/{{book.id}}">
+          <div class="overlay"><i class="fa fa-info-circle"></i> Szczegóły</div>
+          <img src="../uploads/covers/{{book.cover}}" class="img-responsive" alt="" />
+          </a>
+        </div>
+      <div class="book-info-box">
+        <ul class="small-space">
+          <li class="text-bold font-serif font-size-5">{{book.title}}</li>
+          <li class="font-serif font-size-5">{{book.author}}</li>
+          <li class="font-serif font-size-6">{{book.category}}</li>
+          <li class="font-serif font-size-6">
+          </li>
+        </ul>
+      </div>
+      <div class="book-submit-box">
+        {% if book.votes == 0 %}
+          {{(book.rating) | rating}}
+        {% else %}
+          {{(book.rating / book.votes) | rating}}
+        {% endif %}
 
-              <div class="col-md-3 col-sm-6 panel panel-default book-preview">
-                <ul>
-                  <li><img src="../images/logo.png" alt="" /></li>
-                  <li>Tytuł: {{book.title}}</li>
-                  <li>Autor: {{book.author}}</li>
-                  <li>Cena: {{book.price}}</li>
-                  <li><button type="button" name="button">Dodaj do koszyka</button></li>
-                  <a href="/books/{{book.id}}">Szczegoly</a>
-                </ul>
-              </div>
-
+        <small>Liczba głosów: {{book.votes}}</small>
+        <a href="/add-to-cart?id={{book.id}}" type="submit" class="btn btn-default">
+          <i class="fa fa-shopping-cart small-space2"></i>
+          {% if book.isDiscount == true %}
+            Cena: <span class="old-price">{{book.discountPrice}}</span> {{book.price}} zł
+          {% else %}
+            Cena: {{book.price}} zł
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

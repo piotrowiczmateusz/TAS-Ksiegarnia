@@ -1,0 +1,4 @@
+constraints:
+    - FOS\UserBundle\Validator\Unique:
+        property: usernameCanonical
+        message:  'This username already exists. Please choose another one.'

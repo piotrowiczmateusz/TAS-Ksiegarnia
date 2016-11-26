@@ -9,11 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
-	/**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+		/**
+		 * @ORM\Column(type="guid")
+		 * @ORM\Id
+		 * @ORM\GeneratedValue(strategy="UUID")
+		 */
     private $id;
 
     /**
@@ -21,10 +21,14 @@ class Category
      */
     private $title;
 
+    public function __construct($title) {
+       $this->setTitle($title);
+   }
+
     /**
      * Get id
      *
-     * @return integer
+     * @return guid
      */
     public function getId()
     {
@@ -36,7 +40,7 @@ class Category
      *
      * @param string $title
      *
-     * @return Book
+     * @return Category
      */
     public function setTitle($title)
     {
@@ -54,9 +58,4 @@ class Category
     {
         return $this->title;
     }
-
-
-    public function __construct($title) {
-       $this->setTitle($title);
-   }
 }

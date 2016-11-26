@@ -4,50 +4,81 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 use AppBundle\Entity\User;
-use AppBundle\Entity\Book;
 
 class RegistrationController extends Controller
 {
 
-  /**
-   * @Route("/registration-form")
-   */
-  public function registrationFormAction(Request $request)
-  {
-          return $this->render('default/registration.html.twig');
-
-  }
-
     /**
      * @Route("/registration")
      */
-     public function registrationAction()
+     public function registrationAction(Request $request)
      {
-         $name = $_POST['name'];
-         $email = $_POST['email'];
-         $password = $_POST['password'];
+       $session = $request->getSession();
 
-         $message = "";
+       $user = new User();
 
-         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('email' => $email));
+       $form = $this->createFormBuilder($user)
+           ->add('name', TextType::class, array('label' => false))
+           ->add('surname', TextType::class, array('label' => false))
+           ->add('email', TextType::class, array('label' => false))
+           ->add('password', PasswordType::class, array('label' => false))
+           ->add('address', TextType::class, array('label' => false))
+           ->add('city', TextType::class, array('label' => false))
+           ->add('postalCode', TextType::class, array('label' => false))
+           ->add('avatar', FileType::class, array('label' => 'Avatar', 'required' => false))
+           ->add('save', SubmitType::class, array('label' => 'Zarejestruj'))
+           ->getForm();
 
-         if($user) {
-             $message = "Użytkownik już istnieje.";
-         }
-         else {
+           $form->handleRequest($request);
 
-             $user = new User($name, $email, $password);
+           if ($form->isSubmitted() && $form->isValid()) {
 
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($user); // tells Doctrine you want to (eventually) save the Product (no queries yet)
-             $em->flush(); // actually executes the queries (i.e. the INSERT query)
+               $user = $form->getData();
+               $email = $user->getEmail();
 
-             $message = "Zarejestrowano nowego użytkownika: " . $user->getName() . ". Zaloguj się.";
-         }
-         return $this->render('default/alert.html.twig', array('msg' => $message));
+               $findUser = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('email' => $email));
+
+               if($findUser) {
+                 $this->addFlash('notice', 'Użytkownik już istnieje.');
+               }
+               else {
+
+                 $file = $user->getAvatar();
+                 if ($file != null) {
+                   $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                   $file->move($this->getParameter('avatars_directory'), $fileName);
+                   $user->setAvatar($fileName);
+                 } else {
+                   $user->setAvatar('default.png');
+                 }
+
+                 $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+                 $user->setPassword($encoder->encodePassword($user->getPassword(), $user->getSalt()));
+                 $user->setUsername($user->getEmail());
+                 $user->setRatedBooks(",");
+
+                 $em = $this->getDoctrine()->getManager();
+                 $em->persist($user);
+                 $em->flush();
+
+                 $this->addFlash('notice', 'Zarejestrowano nowego użytkownika: ' . $user->getName() . '. Zaloguj się.');
+
+               }
+           }
+
+          return $this->render('default/registration.html.twig', array(
+            'name' => $session->get('name'),
+            'form' => $form->createView()
+          ));
      }
 }

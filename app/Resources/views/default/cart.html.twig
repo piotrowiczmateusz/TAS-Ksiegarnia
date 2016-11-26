@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <div id="main">
+    {% include 'default/alert.html.twig' %}
+    <div class="container">
+    	<div class="row">
+        {% include 'default/sidebar.html.twig' %}
+        <div class="col-md-9">
+    			<div class="panel">
+            <div class="panel-header">
+              <h2><i class="fa fa-shopping-cart"></i> Koszyk: {{cart|length}} przedmiotow</h2>
+            </div>
+            <div class="panel-content">
+              {% for book in cart %}
+              <div class="order">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img src="../uploads/covers/{{book.cover}}" class="book-logo" alt="" />
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Tytuł: {{book.title}}</h4>
+                    <h5>Autor: {{book.author}}</h5>
+                  </div>
+                  <div class="col-md-3">
+                    <h4><strong>Cena: {{book.price}} zł</strong></h4>
+                  </div>
+                  <div class="col-md-3">
+                    <a href="/remove-from-cart?id={{book.id}}" class="btn btn-default"><i class="fa fa-trash"></i> Usuń z koszyka</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <div>Łączna cena do zapłąty za {{cart|length}} przedmitów:
+              <strong>
+                {% set price = 0 %}
+                {% for book in cart %}
+                  {% set price = price + book.price %}
+                {% endfor %}
+                {{ price }} zł
+              </strong>
+            </div>
+            </div>
+
+            <div class="panel-footer">
+
+              <a href="/dashboard" class="btn btn-default"><i class="fa fa-home"></i> Kontynuuj zakupy</a>
+              <a href="/order" class="btn btn-default"><i class="fa fa-shopping-cart"></i>
+                Zamów{% if name is empty %} bez konta{% endif %}</a>
+              {% if name is empty %}
+                <a href="/login" class="btn btn-default"><i class="fa fa-sign-in"></i></i> Zaloguj się</a>
+                <a href="/registration" class="btn btn-default"><i class="fa fa-plus-circle"></i></i> Załóż konto</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

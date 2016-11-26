@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="main">
+      {% include 'default/alert.html.twig' %}
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-6">
+    				<div class="panel">
+              <div class="panel-header">
+                <h2><i class="fa fa-user"></i> Moje dane:</h2>
+              </div>
+              <div class="panel-content">
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="../uploads/avatars/{{user.avatar}}" alt="" width="200" height="200" />
+                  </div>
+                  <div class="col-md-6">
+                    <ul>
+      						    <li>Imię: <strong>{{user.name}}</strong></li>
+                      <li>Nazwisko: <strong>{{user.surname}}</strong></li>
+                      <li>E-mail: <strong>{{user.email}}</strong></li>
+                      <li>Ulica i nr mieszkania: <strong></strong></li>
+                      <li>Miasto: <strong>{{user.city}}</strong></li>
+                      <li>Kod pocztowy: <strong>{{user.postalCode}}</strong></li>
+      						  </ul>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#edit-form">
+                      <i class="fa fa-gear"></i> Edytuj dane
+                    </button>
+                  </div>
+                </div>
+              </div>
+    				</div>
+    			</div>
+          <div class="col-md-6">
+    				<div class="panel">
+              <div class="panel-header">
+                <h2>Historia zamówień:</h2>
+              </div>
+						  <div class="panel-content">
+                {% if orders is empty %}
+                  <p>Brak zamówień.</p>
+                {% else %}
+                  {% for o in orders %}
+                  <div class="order">
+                    <ul>
+                      <li>Data zamówienia: <strong>{{o.orderDate|date('Y-m-d H:i:s')}}</strong> </li>
+                      <li>Id zamówienia: <strong>{{o.id}}</strong></li>
+                      <a href="/order-details?id={{o.id}}" class="btn btn-default">
+                        <i class="fa fa-info-circle"></i> Szczegoly
+                      </a>
+                    </ul>
+                  </div>
+                  {% endfor %}
+                {% endif %}
+						  </div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+    <div id="edit-form" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edytuj swoje dane:</h4>
+          </div>
+          <div class="modal-body">
+            {{ form_start(form) }}
+						{{ form_widget(form) }}
+            {{ form_end(form) }}
+            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

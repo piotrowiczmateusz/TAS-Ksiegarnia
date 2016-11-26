@@ -1,34 +1,49 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
 
-{% include 'default/header.html.twig' %}
-<div id="registration">
-	<div class="container reg-form-position">
-		<div class="row">
-			<div class="col-md-6 col-centered">
-				<div class="login-box">
-					<h2>Logowanie</h2>
-					<form action="/login" method="POST">
-						<label id="login-icon" for="name"><i class="icon-user"></i></label>
-						<input type="text" name="name" id="name" placeholder="Username" required/>
-						<label id="login-icon" for="password"><i class="icon-shield"></i></label>
-						<input type="password" name="password" id="password" placeholder="Password" required/>
-						<button type="submit" class="button"><i class="fa fa-sign-in"></i> Zaloguj</button>
-					</form>
-					<div class="goto-registration">
-						<a href="/registration-form">Nie masz jeszcze konta? Zarejestruj się!</a>
+	<div id="bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="panel">
+						<div class="panel-header">
+							<h2><i class="fa fa-user"></i> Logowanie</h2>
+						</div>
+						<div class="panel-content">
+							{{form_start(form)}}
+
+								<label id="login-icon" for="password"><i class="icon-user"></i></label>
+								{{ form_widget(form.email, {'attr': {'placeholder': 'E-mail'} }) }}
+
+								<label id="login-icon" for="password"><i class="icon-shield"></i></label>
+								{{ form_widget(form.password, {'attr': {'placeholder': 'Hasło'} }) }}
+
+								{{ form_widget(form.save) }}
+
+							{{form_end(form)}}
+
+										<p>
+											Nie masz jeszcze konta? <a href="/registration">Zarejestruj się!</a>
+										</p>
+
+						</div>
 					</div>
-				</div>
-				<div class="remind-pass-box">
-					<h2>Odzyskiwanie hasła</h2>
-					<form action="/">
-						<label id="login-icon" for="name"><i class="icon-envelope "></i></label>
-						<input type="text" name="name" id="name" placeholder="Email" required/>
-						<a href="#" class="button">Odzyskaj hasło</a>
-					</form>
+					<div class="panel">
+						<div class="panel-header">
+							<h2><i class="fa fa-question"></i> Odzyskiwanie hasła</h2>
+						</div>
+						<div class="panel-content">
+							<form action="/restore-password" method="POST">
+								<label id="login-icon" for="email"><i class="icon-envelope "></i></label>
+								<input type="email" name="email" id="email" placeholder="Email" required/>
+								<input type="submit" name="name" value="Odzyskaj hasło" class="btn">
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
 {% endblock %}

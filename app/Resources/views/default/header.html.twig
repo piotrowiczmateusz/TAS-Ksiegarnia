@@ -1,56 +1,61 @@
 {% block body %}
-<header>
+<header id="header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 left">
-
-					<span><img id="logo" src="images\logo.png"></span>
-					<a href="/" class="text-bold font-serif font-size-3 color-name double-space">Księgarnia</a>
-
+				<img id="logo" src="..\uploads\logo.png" />
+				<a href="/"><h1>Księgarnia</h1></a>
 			</div>
 			<div class="col-md-8 right">
-				<nav>
+				<nav  id="header-nav">
 					<ul>
 
-						{% if name is defined and name is not empty %}
+					{% if name is defined and name is not empty %}
+					<li class="dropdown">
+						<i class="fa fa-user"></i>
+						<a id="my-account" href="#" class="font-size-4">Moje konto</a>
+						<div class="dropdown-content">
+							<a href="/add-book">Dodaj książkę</a>
+							<a href="/my-account">Moje dane</a>
+							<a href="/logout">Wyloguj</a>
+						</div>
+					</li>
 
-						<li class="drop">
-							<i class="fa fa-user"></i>
-							<a href="#" class="text-bold font-serif cursor-pointer color-action font-size-4 single-space">Moje konto</a>
-							<div class="dropdownContain">
-								<div class="dropOut">
-									<div class="triangle"></div>
-									<ul>
-										<i style="float: left;" class="fa fa-plus-circle"></i>
-										<li>Dodaj książkę</li>
-										<li>Moje dane</li>
-										<li>Ustawienia</li>
-										<li>Wyloguj</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-						<li>
-							<i class="fa fa-shopping-cart"></i>
-							<a href="#" class="text-bold font-serif cursor-pointer color-action font-size-4">Koszyk</a>
-						</li>
+					<li>
+						<i class="fa fa-shopping-cart double-space"></i>
+						<a href="/cart" class="font-size-4">
+							Koszyk
+							<span class="cart-length">
+								{% if cart is defined%}
+									{{cart|length}}
+								{% else %}
+									0
+								{% endif %}
+							</span>
+						</a>
+					</li>
 
+					{% else %}
 
-						{% else %}
 						<li>
 							<i class="fa fa-plus-circle"></i>
-							<a href="/registration-form" class="text-bold font-serif cursor-pointer color-action font-size-4">Zarejestruj się</a>
+							<a href="/registration" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">
+								rejestracja
+							</a>
 						</li>
 						<li>
-							<i class="fa fa-user"></i>
-							<a href="/login-form" class="text-bold font-serif cursor-pointer color-action font-size-4">Zaloguj się</a>
+							<i class="fa fa-sign-in double-space"></i>
+							<a href="/login" class="text-bold font-serif cursor-pointer color-action font-size-4 small-space">logowanie
+							</a>
 						</li>
-						{% endif %}
+
+					{% endif %}
+
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</div>
-
 </header>
+
 {% endblock %}

@@ -2,65 +2,63 @@
 
 {% block body %}
 
-{% include 'default/header.html.twig' %}
-
     <div id="main">
     	<div class="container">
     		<div class="row">
     			<div class="col-md-6">
-    				<div class="panel panel-default">
-						  <div id="sign-up" class="tab-pane fade in active">
-						    <h3>Dodaj ksiazke</h3>
-						    <form action="/add" method="POST">
-						      <div class="form-group">
-							    <label for="title">Tytul:</label>
-							    <input type="text" name="title" class="form-control" id="title">
-							  </div>
-							  <div class="form-group">
-							    <label for="author">Autor:</label>
-							    <input type="text" name="author" class="form-control" id="author">
-							  </div>
-                <div class="form-group">
-							    <label for="category">Kategoria:</label>
-                  <select class="form-control" name="category" id="category">
-                    {% for category in categories %}
-                    <option>{{category.title|e}}</option>
-                    {% endfor %}
-                  </select>
-							  </div>
-                <div class="form-group">
-							    <label for="type">Rodzaj:</label>
-                  <select class="form-control" name="type" id="type">
-                    <option>Ksiazka papierowa</option>
-                    <option>E-book</option>
-                  </select>
-							  </div>
-                <div class="form-group">
-							    <label for="publisher">Wydawnictwo:</label>
-                  <input type="text" name="publisher" class="form-control" id="publisher">
-							  </div>
-                <div class="form-group">
-							    <label for="date">Rok wydania:</label>
-                  <input type="number" min="0000" max="2016" name="date" class="form-control" id="date">
-							  </div>
-                <div class="form-group">
-							    <label for="bestseller">Bestseller: <input type="checkbox" name="bestseller" id="bestseller"></label>
-							  </div>
-                <div class="form-group">
-                  <label for="new">Nowosc: <input type="checkbox" name="new" id="new"></label>
+    				<div class="panel">
+                <div class="panel-header">
+                  <h2><i class="fa fa-book"></i> Dodaj książkę</h3>
                 </div>
-                <div class="form-group">
-							    <label for="description">Description:</label>
-							    <textarea name="description" class="form-control" id="description" rows="8" cols="40"></textarea>
-							  </div>
-                <div class="form-group">
-							    <label for="price">Cena:</label>
-                  <input type="number" name="price" class="form-control" id="price">
-							  </div>
-							  <button type="submit" class="btn btn-default"><i class="fa fa-plus-circle"></i> Dodaj</button>
-							</form>
+                {{ form_start(form) }}
+                <div class="panel-content">
+
+
+                  <label id="login-icon" for="title"><i class="icon-book"></i></label>
+                  {{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł...'} }) }}
+
+                  <label id="login-icon" for="author"><i class="icon-user"></i></label>
+                  {{ form_widget(form.author, {'attr': {'placeholder': 'Autor...'} }) }}
+
+                  <label id="login-icon" for="description"><i class="icon-font"></i></label>
+                  {{ form_widget(form.description, {'attr': {'placeholder': 'Opis...'} }) }}
+
+                  <label id="login-icon" for="category"><i class="icon-list"></i></label>
+                  {{ form_widget(form.category, {'attr': {'placeholder': 'Kategoria...'} }) }}
+
+                  <label id="login-icon" for="publisher"><i class="icon-user"></i></label>
+                  {{ form_widget(form.publisher, {'attr': {'placeholder': 'Wydawca...'} }) }}
+
+                  {{ form_label(form.cover) }}
+                  {{ form_widget(form.cover) }}
+
+                  <label id="login-icon" for="date"><i class="icon-calendar"></i></label>
+                  {{ form_widget(form.date, {'attr': {'placeholder': 'Data wydania...'} }) }}
+
+                  {{ form_label(form.isNew) }}
+                  {{ form_widget(form.isNew) }}
+
+                  {{ form_label(form.isBestseller) }}
+                  {{ form_widget(form.isBestseller) }}
+
+                  {{ form_label(form.isDiscount) }}
+                  {{ form_widget(form.isDiscount) }}
+
+                  <label id="login-icon" for="price"><i class="fa fa-dollar"></i></label>
+                  {{ form_widget(form.price, {'attr': {'placeholder': 'Cena...'} }) }}
+
+                  <label id="login-icon" for="discountPrice"><i class="fa fa-dollar"></i></label>
+                  {{ form_widget(form.discountPrice, {'attr': {'placeholder': 'Przecena...'} }) }}
+
+
+
+
+                </div>
+                <div class="panel-footer">
+                  {{ form_widget(form.save) }}
+                </div>
+                {{ form_end(form) }}
 						  </div>
-    				</div>
     			</div>
     		</div>
     	</div>

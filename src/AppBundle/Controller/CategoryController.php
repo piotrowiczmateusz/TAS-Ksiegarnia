@@ -4,29 +4,34 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\Book;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CategoryController extends Controller
 {
     /**
      * @Route("/categories/{id}")
      */
-    public function indexAction($id)
+    public function indexAction(Request $request, $id)
     {
+      $session = $request->getSession();
+      ($session->get('cart')) ? $cart = $session->get('cart') : $cart = array();
+
       $em = $this->getDoctrine()->getManager();
 
-      $query = $em->createQuery("SELECT c FROM AppBundle:Category c WHERE c.id = ".$id);
-      $categories = $query->getResult();
-      $category = array_pop($categories);
-
-      $query = $em->createQuery("SELECT b FROM AppBundle:Book b WHERE b.category = '".$category->getTitle()."'" );
-      $books = $query->getResult();
+      $categories = $em->getRepository('AppBundle:Category')->findAll();
+      $category = $em->getRepository('AppBundle:Category')->findOneById($id);
+      $books = $em->getRepository('AppBundle:Book')->findByCategory($category->getTitle());
 
       return $this->render('default/category.html.twig', array(
+        'name' => $session->get('name'),
+        'cart' => $cart,
+        'category' => $category->getTitle(),
+        'categories' => $categories,
         'books' => $books)
       );
-      
+
     }
 }
 ?>
